@@ -30,46 +30,48 @@
         <Label x:Name="HeightLable" Content="Высота (h)" HorizontalAlignment="Right" Margin="0,4,3,4" Grid.Row="2"
                Grid.Column="0" VerticalAlignment="Center" Height="24" Width="66"/>
         <TextBox x:Name="HeightTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="2"
-                 TextWrapping="Wrap" Text="100" VerticalAlignment="Center" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding Height, Mode=TwoWay}" VerticalAlignment="Center" Width="90"/>
         <Label x:Name="InitialSpeedLabel" Content="Нач. скорость(v0)" Grid.Column="2" HorizontalAlignment="Right" Margin="0,3"
                Grid.Row="2" VerticalAlignment="Center"/>
         <TextBox x:Name="InitialSpeedTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="2"
-                 TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding InitialSpeed}" VerticalAlignment="Center" Width="90"/>
         <Label x:Name="CalculationSchemeParamsLabel" Content="Параметры расчетной схемы" Width="Auto" Grid.ColumnSpan="3"
                HorizontalAlignment="Center" Margin="65,0,160,0" Grid.Row="3" VerticalAlignment="Center" Grid.Column="1" FontSize="14"/>
         <Label x:Name="InitialTimeLabel" Content="Нач. время(t0)" HorizontalAlignment="Right" Margin="0,3,3,3" Grid.Row="4"
                VerticalAlignment="Center"/>
         <TextBox x:Name="InitialTimeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3,5,0,5" Grid.Row="4"
-                 TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding InitialTime, Mode=TwoWay}" VerticalAlignment="Center" Width="90"/>
         <Label x:Name="EndTimeLabel" Content="Кон. время(tкон)" Grid.Column="2" HorizontalAlignment="Right" Margin="0,3,3,3"
                Grid.Row="4" VerticalAlignment="Center"/>
         <TextBox x:Name="EndTimeTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="23" Margin="3,6,0,3" Grid.Row="4"
-                 TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding EndTime, Mode=TwoWay}" VerticalAlignment="Center" Width="90" />
         <RadioButton x:Name="NLabel" Content="Кол-во отсчетов" HorizontalAlignment="Right" Margin="0,7,3,7" Grid.Row="5"
-                     VerticalAlignment="Center" GroupName="CalculationSchemeParams"/>
+                     VerticalAlignment="Center" GroupName="CalculationSchemeParams" IsChecked="{Binding IsN, Mode=TwoWay}"/>
         <TextBox x:Name="NTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,0,3" Grid.Row="5"
-                 TextWrapping="Wrap" Text="10" VerticalAlignment="Center" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding N, Mode=TwoWay}" VerticalAlignment="Center" Width="90" IsEnabled="{Binding IsN, Mode=TwoWay}"/>
         <RadioButton x:Name="StepLabel" Content="Шаг" HorizontalAlignment="Right" Margin="0,7,3,7" Grid.Row="5"
-                     VerticalAlignment="Center" Grid.Column="2" GroupName="CalculationSchemeParams"/>
+                     VerticalAlignment="Center" Grid.Column="2" GroupName="CalculationSchemeParams" IsChecked="{Binding IsStep, Mode=TwoWay}"/>
         <Label x:Name="ModelParamsLabel" Content="Параметры модели" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="65,0,6,0"
                Grid.Row="6" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
         <Label x:Name="GravityLabel" Content="Сила Тяжести" HorizontalAlignment="Right" Margin="0,3,3,3" Grid.Row="7"
                Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox x:Name="GravityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3,5,0,5" Grid.Row="7"
-                 TextWrapping="Wrap" Text="9.81" VerticalAlignment="Center" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding Gravity, Mode=TwoWay}" VerticalAlignment="Center" Width="90"/>
         <CheckBox x:Name="ArchimedesStrengthCheckBox" Content="Сила Архмиеда" Grid.Column="2" HorizontalAlignment="Right" Margin="0,9,3,9"
-                  Grid.Row="7" VerticalAlignment="Center"/>
+                  Grid.Row="7" VerticalAlignment="Center" IsChecked="{Binding IsArchimede, Mode=TwoWay}"/>
         <TextBox x:Name="ArchimedesStrengthTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" Grid.Row="7"
-                 TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding ArchimedeStrength, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsArchimede, Mode=TwoWay}"/>
         <CheckBox x:Name="ResistenceStrengthLinearSpeedLabel" Content="Сила сопр. (лин.)" HorizontalAlignment="Right" Margin="3,3,3,3"
-                  Grid.Row="8" VerticalAlignment="Center"/>
+                  Grid.Row="8" VerticalAlignment="Center" IsChecked="{Binding IsLinear, Mode=TwoWay}"/>
         <CheckBox x:Name="ResistenceStrengthSquareSpeedLabel" Content="Сила сопр. (квадр.)" HorizontalAlignment="Right" Margin="3,3,3,3"
-                  Grid.Row="8" VerticalAlignment="Center" Grid.Column="2"/>
+                  Grid.Row="8" VerticalAlignment="Center" Grid.Column="2" IsChecked="{Binding IsSquare, Mode=TwoWay}"/>
         <TextBox x:Name="ResistenceStrengthSquareSpeedTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" Grid.Row="8"
-                 TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding SquareSpeed, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsSquare, Mode=TwoWay}"/>
         <TextBox x:Name="ResistenceStrengthLinearSpeedTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" Grid.Row="8"
-                 TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding LinearSpeed, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsLinear, Mode=TwoWay}"/>
         <Button x:Name="CalculateBtn" Content="Рассчитать" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="9" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="StepTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Margin="3,3,3,3" Grid.Row="5" Grid.Column="3" 
+                 Text="{Binding Step, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsStep, Mode=TwoWay}"/>
 
     </Grid>
 </Window>

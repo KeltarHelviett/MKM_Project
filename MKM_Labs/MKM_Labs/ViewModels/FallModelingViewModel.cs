@@ -1,0 +1,233 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MKM_Labs.ViewModels
+{
+    class FallModelingViewModel: INotifyPropertyChanged
+    {
+        #region PublicProperties
+
+        private double height = 100;
+
+        public double Height
+        {
+            get { return height; }
+            set
+            {
+                if (value == height)
+                    return;
+                height = value;
+                OnPropertyChanged(nameof(Height));
+            }
+        }
+
+        private double initialSpeed = 0;
+
+        public double InitialSpeed
+        {
+            get { return initialSpeed; }
+            set
+            {
+                if (value == height)
+                    return;
+                initialSpeed = value;
+                OnPropertyChanged(nameof(InitialSpeed));
+            }
+        }
+
+        private double initialTime = 0;
+
+        public double InitialTime
+        {
+            get { return initialTime; }
+            set
+            {
+                if (value == initialTime)
+                    return;
+                initialTime = value;
+                OnPropertyChanged(nameof(InitialTime));
+            }
+        }
+
+        private double endTime = 10;
+
+        public double EndTime
+        {
+            get { return endTime; }
+            set
+            {
+                if (value == endTime)
+                    return;
+                endTime = value;
+                OnPropertyChanged(nameof(EndTime));
+            }
+        }
+
+        private double n = 10;
+
+        public double N
+        {
+            get { return n; }
+            set
+            {
+                if (n == value)
+                    return;
+                n = value;
+                OnPropertyChanged(nameof(N));
+            }
+        }
+
+        private double step = 0.25;
+
+        public double Step
+        {
+            get { return step; }
+            set
+            {
+                if (step == value)
+                    return;
+                step = value;
+                OnPropertyChanged(nameof(Step));
+            }
+        }
+
+        private bool isStep = true;
+
+        public bool IsStep
+        {
+            get { return isStep; }
+            set
+            {
+                if (isStep == value)
+                    return;
+                isStep = value;
+                OnPropertyChanged(nameof(IsStep));
+            }
+        }
+
+        private bool isN = false;
+
+        public bool IsN
+        {
+            get { return isN; }
+            set
+            {
+                if (isN == value)
+                    return;
+                isN = value;
+                OnPropertyChanged(nameof(IsN));
+            }
+        }
+
+        private double gravity = 9.81;
+
+        public double Gravity
+        {
+            get { return gravity; }
+            set
+            {
+                if (gravity == value)
+                    return;
+                gravity = value;
+                OnPropertyChanged(nameof(Gravity));
+            }
+        }
+
+        private double archimedeStrength = 0;
+
+        public double ArchimedeStrength
+        {
+            get { return archimedeStrength; }
+            set
+            {
+                if (archimedeStrength == value)
+                    return;
+                archimedeStrength = value;
+                OnPropertyChanged(nameof(ArchimedeStrength));
+            }
+        }
+
+        private double linearSpeed = 0;
+
+        public double LinearSpeed
+        {
+            get { return linearSpeed; }
+            set
+            {
+                if (linearSpeed == value)
+                    return;
+                linearSpeed = value;
+                OnPropertyChanged(nameof(LinearSpeed));
+            }
+        }
+
+        private double squareSpeed = 0;
+
+        public double SquareSpeed
+        {
+            get { return squareSpeed; }
+            set
+            {
+                if (squareSpeed == value)
+                    return;
+                squareSpeed = value;
+                OnPropertyChanged(nameof(SquareSpeed));
+            }
+        }
+
+        private bool isArchimede = false;
+
+        public bool IsArchimede
+        {
+            get { return isArchimede; }
+            set
+            {
+                if (isArchimede == value)
+                    return;
+                isArchimede = value;
+                OnPropertyChanged(nameof(IsArchimede));
+            }
+        }
+
+        private bool isLinear = false;
+
+        public bool IsLinear
+        {
+            get { return isLinear; }
+            set
+            {
+                isLinear = value;
+                if (isLinear)
+                    IsSquare = false;
+                OnPropertyChanged(nameof(IsLinear));
+            }
+        }// Алеутская 45 7 этаж 703 офис
+
+        private bool isSquare = false;
+
+        public bool IsSquare
+        {
+            get { return isSquare; }
+            set
+            {
+                isSquare = value;
+                if (isSquare)
+                    IsLinear = false;
+                OnPropertyChanged(nameof(IsSquare));
+            }
+        }
+        #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}

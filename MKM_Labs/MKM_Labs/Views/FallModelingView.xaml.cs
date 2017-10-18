@@ -11,17 +11,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MKM_Labs.ViewModels;
 
 namespace MKM_Labs.Views
 {
-    /// <summary>
-    /// Interaction logic for FallModelingView.xaml
-    /// </summary>
     public partial class FallModelingView : Window
     {
         public FallModelingView()
         {
             InitializeComponent();
+            DataContext = new FallModelingViewModel();
         }
     }
 }
