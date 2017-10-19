@@ -39,6 +39,50 @@ namespace MKM_Labs.ViewModels
 
         public ChartValues<ObservablePoint> Vs { get; set; } = new ChartValues<ObservablePoint>();
 
+        private bool isSpeed = false;
+
+        public bool IsSpeed
+        {
+            get { return isSpeed; }
+            set
+            {
+                if (isSpeed == value)
+                    return;
+                isSpeed = value;
+                if (isSpeed)
+                {
+                    Collection.Clear();
+                    Collection.Add(new LineSeries
+                    {
+                        Values = Vs
+                    });
+                }
+                OnPropertyChanged(nameof(IsSpeed));
+            }
+        }
+
+        private bool isY = true;
+
+        public bool IsY
+        {
+            get { return isY; }
+            set
+            {
+                if (isY == value)
+                    return;
+                isY = value;
+                if (isY)
+                {
+                    Collection.Clear();
+                    Collection.Add(new LineSeries
+                    {
+                        Values = Ys
+                    });
+                }
+                OnPropertyChanged(nameof(IsY));
+            }
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -6,10 +6,15 @@
         xmlns:local="clr-namespace:MKM_Labs.Views"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="FallModelingResultView" Height="400" Width="400">
+        Title="FallModelingResultView" Height="500" Width="500">
     <Grid>
-        <lvc:CartesianChart Series="{Binding Collection}" Margin="3,3,3,0" VerticalAlignment="Top" Height="230">
+        <lvc:CartesianChart Series="{Binding Collection}" Margin="3,3,3,0" 
+                            VerticalAlignment="Top" Height="350" Zoom="Xy">
             
         </lvc:CartesianChart>
+        <RadioButton x:Name="isSpeedRB" Content="Скорость" HorizontalAlignment="Left" Margin="76,387,0,0" 
+                     IsChecked="{Binding IsSpeed, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <RadioButton x:Name="isYRB" Content="Высота" HorizontalAlignment="Left" Margin="301,387,0,0" 
+                     IsChecked="{Binding IsY, Mode=TwoWay}" VerticalAlignment="Top"/>
     </Grid>
 </Window>
