@@ -20,7 +20,17 @@ namespace MKM_Labs.Views
         public FallModelingResultView()
         {
             InitializeComponent();
-            //DataContext = new FallModelingResultViewModel();
+        }
+
+        public FallModelingResultView(Tuple<List<double>, List<double>, List<double>> numeric)
+        {
+            DataContext = new FallModelingResultViewModel(numeric.Item1, numeric.Item2, numeric.Item3);
+        }
+
+        public FallModelingResultView(Tuple<List<double>, List<double>, List<double>> numeric,
+            Tuple<List<double>, List<double>, List<double>> analitical)
+        {
+            DataContext = new FallModelingResultViewModel(numeric.Item1, numeric.Item2, numeric.Item3, analitical.Item2, analitical.Item3);
         }
     }
 }

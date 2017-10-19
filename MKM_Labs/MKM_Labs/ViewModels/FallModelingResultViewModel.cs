@@ -27,6 +27,26 @@ namespace MKM_Labs.ViewModels
                 Values = Ys
             });
         }
+
+        public FallModelingResultViewModel(List<double> ts, List<double> ys, List<double> vs, List<double> ays, List<double> avs)
+        {
+            for (int i = 0; i < ts.Count; ++i)
+            {
+                Ys.Add(new ObservablePoint(ts[i], ys[i]));
+                Vs.Add(new ObservablePoint(ts[i], vs[i]));
+                AnaliticalYs.Add(new ObservablePoint(ts[i], ays[i]));
+                AnaliticalVs.Add(new ObservablePoint(ts[i], avs[i]));
+            }
+            Collection.Add(new LineSeries()
+            {
+                Values = Ys
+            });
+            Collection.Add(new LineSeries()
+            {
+                Values = AnaliticalYs
+            });
+        }
+
         #endregion
 
         #region PublicProperties
@@ -38,6 +58,10 @@ namespace MKM_Labs.ViewModels
         public ChartValues<ObservablePoint> Ys { get; set; } = new ChartValues<ObservablePoint>();
 
         public ChartValues<ObservablePoint> Vs { get; set; } = new ChartValues<ObservablePoint>();
+
+        public ChartValues<ObservablePoint> AnaliticalYs { get; set; } = new ChartValues<ObservablePoint>();
+
+        public ChartValues<ObservablePoint> AnaliticalVs { get; set; } = new ChartValues<ObservablePoint>();
 
         private bool isSpeed = false;
 
@@ -52,9 +76,13 @@ namespace MKM_Labs.ViewModels
                 if (isSpeed)
                 {
                     Collection.Clear();
-                    Collection.Add(new LineSeries
+                    Collection.Add(new LineSeries()
                     {
                         Values = Vs
+                    });
+                    Collection.Add(new LineSeries()
+                    {
+                        Values = AnaliticalVs
                     });
                 }
                 OnPropertyChanged(nameof(IsSpeed));
@@ -74,9 +102,13 @@ namespace MKM_Labs.ViewModels
                 if (isY)
                 {
                     Collection.Clear();
-                    Collection.Add(new LineSeries
+                    Collection.Add(new LineSeries()
                     {
                         Values = Ys
+                    });
+                    Collection.Add(new LineSeries()
+                    {
+                        Values = AnaliticalYs
                     });
                 }
                 OnPropertyChanged(nameof(IsY));
