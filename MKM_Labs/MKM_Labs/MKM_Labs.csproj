@@ -67,6 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\FallModelingResultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FallModelingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -80,7 +84,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MathUtils.cs" />
+    <Compile Include="ViewModels\FallModelingResultViewModel.cs" />
     <Compile Include="ViewModels\FallModelingViewModel.cs" />
+    <Compile Include="Views\FallModelingResultView.xaml.cs">
+      <DependentUpon>FallModelingResultView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FallModelingView.xaml.cs">
       <DependentUpon>FallModelingView.xaml</DependentUpon>
     </Compile>
