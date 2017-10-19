@@ -71,7 +71,7 @@
                  TextWrapping="Wrap" Text="{Binding SquareSpeed, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsSquare, Mode=TwoWay}"/>
         <TextBox x:Name="ResistenceStrengthLinearSpeedTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" Grid.Row="8"
                  TextWrapping="Wrap" Text="{Binding LinearSpeed, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsLinear, Mode=TwoWay}"/>
-        <Button x:Name="CalculateBtn" Content="Рассчитать" Grid.Column="1" HorizontalAlignment="Left" Margin="10,9,0,0" Grid.Row="11" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="CalculateBtn" Content="Рассчитать" Grid.Column="1" HorizontalAlignment="Left" Margin="10,9,0,0" Grid.Row="11" VerticalAlignment="Top" Width="75" Click="CalculateBtnClick"/>
         <TextBox x:Name="StepTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Margin="3,3,0,0" Grid.Row="5" Grid.Column="3" 
                  Text="{Binding Step, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsStep, Mode=TwoWay}"/>
         <Label x:Name="MassLabel" Content="Масса" HorizontalAlignment="Right" Margin="0,3,3,3" Grid.Row="9" VerticalAlignment="Center"/>

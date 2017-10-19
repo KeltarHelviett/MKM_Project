@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 
 namespace MKM_Labs.ViewModels
@@ -16,23 +17,27 @@ namespace MKM_Labs.ViewModels
 
         public FallModelingResultViewModel(List<double> ts, List<double> ys, List<double> vs)
         {
-            Ts = ts;
-            Ys = ys;
-            Vs = vs;
-            SeriesCollection.Add(new LineSeries {});
+            for (int i = 0; i < ts.Count; ++i)
+            {
+                Ys.Add(new ObservablePoint(ts[i], ys[i]));
+                Vs.Add(new ObservablePoint(ts[i], vs[i]));
+            }
+            Collection.Add(new LineSeries()
+            {
+                Values = Ys
+            });
         }
-
         #endregion
 
         #region PublicProperties
 
-        public SeriesCollection SeriesCollection { get; set; }
+        public SeriesCollection Collection { get; set; } = new SeriesCollection();
 
-        public List<double> Ts { get; set; }
+        public ChartValues<ObservablePoint> Ts { get; set; }
 
-        public List<double> Ys { get; set; }
+        public ChartValues<ObservablePoint> Ys { get; set; } = new ChartValues<ObservablePoint>();
 
-        public List<double> Vs { get; set; }
+        public ChartValues<ObservablePoint> Vs { get; set; } = new ChartValues<ObservablePoint>();
 
         #endregion
 

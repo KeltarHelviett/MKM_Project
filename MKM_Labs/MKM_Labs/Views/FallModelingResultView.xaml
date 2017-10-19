@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="FallModelingResultView" Height="400" Width="400">
     <Grid>
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="3,3,3,0" VerticalAlignment="Top" Height="230">
+        <lvc:CartesianChart Series="{Binding Collection}" Margin="3,3,3,0" VerticalAlignment="Top" Height="230">
             
         </lvc:CartesianChart>
     </Grid>

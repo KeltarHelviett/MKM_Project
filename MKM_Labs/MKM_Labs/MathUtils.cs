@@ -8,7 +8,7 @@ namespace MKM_Labs
 {
     static class MathUtils
     {
-        public static Tuple<List<double>, List<double>> AnaliticalAns(double t0, double endt, Func<double, double> fy, Func<double, double> fv)
+        public static Tuple<List<double>, List<double>, List<double>> AnaliticalAns(double t0, double endt, Func<double, double> fy, Func<double, double> fv)
         {
             var step = 100;
             var ts = new List<double>();
@@ -24,24 +24,26 @@ namespace MKM_Labs
                 vs.Add(fy(ts[i]));
                 ys.Add(fv(ts[i]));
             }
-            return Tuple.Create(ys, vs);
+            return Tuple.Create(ts, ys, vs);
         }
 
-        private static Tuple<List<double>, List<double>> EulerCromer(List<double> ts,
+        private static Tuple<List<double>, List<double>, List<double>> EulerCromer(List<double> ts,
             double y0, double v0, Func<double, double, double, double> f)
         {
-            var ys = new List<double> {Capacity = ts.Count(), [0] = y0};
-            var vs = new List<double> {Capacity = ts.Count(), [0] = v0};
+            var ys = new List<double> {Capacity = ts.Count()};
+            ys.Add(y0);
+            var vs = new List<double> {Capacity = ts.Count()};
+            vs.Add(v0);
             for (int i = 0; i < ts.Count() - 1; ++i)
             {
                 var deltat = ts[i + 1] - ts[i];
                 vs.Add(vs[i] + deltat * f(ys[i], vs[i], deltat));
                 ys.Add(ys[i] + deltat * vs[i + 1]);
             }
-            return Tuple.Create(ys, vs);
+            return Tuple.Create(ts, ys, vs);
         }
 
-        public static Tuple<List<double>, List<double>> EulerCromer(double t0, double endt,
+        public static Tuple<List<double>, List<double>, List<double>> EulerCromer(double t0, double endt,
             double steporn, bool isStep, double y0, double v0, Func<double, double, double, double> f)
         {
             if (!isStep)

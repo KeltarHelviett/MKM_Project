@@ -21,7 +21,14 @@ namespace MKM_Labs.Views
         {
             InitializeComponent();
             DataContext = new FallModelingViewModel();
-            ((FallModelingViewModel)DataContext).Calculate();
+        }
+
+        private void CalculateBtnClick(object sender, RoutedEventArgs e)
+        {
+            var res = ((FallModelingViewModel) DataContext).Calculate();
+            var viewRes = new FallModelingResultView();
+            viewRes.Show();
+            viewRes.DataContext = new FallModelingResultViewModel(res.Item1, res.Item2, res.Item3);
         }
     }
 }

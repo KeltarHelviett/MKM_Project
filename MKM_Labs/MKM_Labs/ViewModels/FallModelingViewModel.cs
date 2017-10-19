@@ -247,7 +247,7 @@ namespace MKM_Labs.ViewModels
 
         #region PublicMethods
 
-        public Tuple<List<double>, List<double>> Calculate()
+        public Tuple<List<double>, List<double>, List<double>> Calculate()
         {
             var steporn = step;
             if (!IsStep) steporn = N;
@@ -297,7 +297,7 @@ namespace MKM_Labs.ViewModels
 
                 return 0.0;
             };
-
+            
             return MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f);
         }
 
