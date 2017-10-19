@@ -21,6 +21,7 @@ namespace MKM_Labs.Views
         {
             InitializeComponent();
             DataContext = new FallModelingViewModel();
+            ((FallModelingViewModel)DataContext).Calculate();
         }
     }
 }

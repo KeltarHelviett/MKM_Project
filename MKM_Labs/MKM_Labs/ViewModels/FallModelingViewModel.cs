@@ -235,6 +235,35 @@ namespace MKM_Labs.ViewModels
                 OnPropertyChanged(nameof(Mass));
             }
         }
+
+        private double volume = 0.2;
+
+        public double Volume
+        {
+            get { return volume; }
+            set
+            {
+                if (volume == value)
+                    return;
+                volume = value;
+                OnPropertyChanged(nameof(Volume));
+            }
+        }
+
+        private double density = 0.5;
+
+        public double Density
+        {
+            get { return density; }
+            set
+            {
+                if (density == value)
+                    return;
+                density = value;
+                OnPropertyChanged(nameof(Density));
+            }
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -248,7 +277,7 @@ namespace MKM_Labs.ViewModels
 
         public void Calculate()
         {
-            // doing calculations
+            
         }
 
         #endregion
