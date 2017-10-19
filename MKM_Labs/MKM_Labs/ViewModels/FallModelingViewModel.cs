@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using MKM_Labs;
 
 namespace MKM_Labs.ViewModels
 {
@@ -139,7 +140,7 @@ namespace MKM_Labs.ViewModels
         }
 
         private double archimedeStrength = 0;
-
+        
         public double ArchimedeStrength
         {
             get { return archimedeStrength; }
@@ -235,35 +236,6 @@ namespace MKM_Labs.ViewModels
                 OnPropertyChanged(nameof(Mass));
             }
         }
-
-        private double volume = 0.2;
-
-        public double Volume
-        {
-            get { return volume; }
-            set
-            {
-                if (volume == value)
-                    return;
-                volume = value;
-                OnPropertyChanged(nameof(Volume));
-            }
-        }
-
-        private double density = 0.5;
-
-        public double Density
-        {
-            get { return density; }
-            set
-            {
-                if (density == value)
-                    return;
-                density = value;
-                OnPropertyChanged(nameof(Density));
-            }
-        }
-
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -275,9 +247,58 @@ namespace MKM_Labs.ViewModels
 
         #region PublicMethods
 
-        public void Calculate()
+        public Tuple<List<double>, List<double>> Calculate()
         {
-            
+            var steporn = step;
+            if (!IsStep) steporn = N;
+
+            if ( !IsArchimede && !IsLinear && !IsSquare )
+            {
+                Func<double, double> fy = delegate (double t) {
+                    return Height + InitialSpeed*t - (Gravity/2)*t*t;
+                };
+
+                Func<double, double> fv = delegate (double t) {
+                    return InitialSpeed - Gravity * t;
+                };
+
+                return MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv);
+            }
+
+            if (IsArchimede && !IsLinear && !IsSquare)
+            {
+                Func<double, double> fy = delegate (double t) {
+                    return Height + InitialSpeed * t - (Gravity / 2) * t * t;
+                };
+
+                Func<double, double> fv = delegate (double t) {
+                    return InitialSpeed - Gravity * t;
+                };
+
+                return MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv);
+            }
+
+            Func<double, double, double, double> f = delegate (double y, double v, double dt) {
+                double res = Gravity;
+
+                if (IsArchimede) {
+                    //res += 
+                }
+
+                if (IsLinear)
+                {
+                    //res += 
+                }
+
+                if (IsSquare)
+                {
+                    //res += 
+                }
+
+                return 0.0;
+            };
+
+            return MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f);
         }
 
         #endregion
