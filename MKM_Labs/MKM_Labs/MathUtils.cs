@@ -8,18 +8,20 @@ namespace MKM_Labs
 {
     static class MathUtils
     {
-        public static Tuple<List<double>, List<double>, List<double>> AnaliticalAns(double t0, double endt, Func<double, double> fy, Func<double, double> fv)
+        public static Tuple<List<double>, List<double>, List<double>> AnaliticalAns(double t0, double endt, double steporn, bool isStep,
+            Func<double, double> fy, Func<double, double> fv)
         {
-            var step = 100;
+            if (!isStep)
+                steporn = (endt - t0) / (steporn - 1);
+
             var ts = new List<double>();
 
-            for (int i = 0; i < step; ++i)
-            {
-                ts.Add(t0 + i * (endt - t0) / step);
-            }
+            for (var i = 0; steporn * i <= endt; ++i)
+                ts.Add(steporn * i);
+
             var ys = new List<double> { Capacity = ts.Count() };
             var vs = new List<double> { Capacity = ts.Count() };
-            for (int i = 0; i < step; ++i)
+            for (int i = 0; i < ts.Count; ++i)
             {
                 vs.Add(fv(ts[i]));
 

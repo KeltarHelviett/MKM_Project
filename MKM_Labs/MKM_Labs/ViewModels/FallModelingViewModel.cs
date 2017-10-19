@@ -301,23 +301,50 @@ namespace MKM_Labs.ViewModels
                 return res;
             };
 
-            if ( !IsArchimede && !IsLinear && !IsSquare )
+            var Res = MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f);
+
+            if ( IsArchimede && !IsLinear && !IsSquare )
             {
+                var newg = Gravity * (1 - DensityEnv * Volume / Mass);
                 Func<double, double> fy = delegate (double t) {
-                    return Height + InitialSpeed*t - (Gravity/2)*t*t;
+                    
+                    return Height + InitialSpeed*t - (newg /2)*t*t;
                 };
 
                 Func<double, double> fv = delegate (double t) {
-                    return InitialSpeed - Gravity * t;
+                    return InitialSpeed - newg * t;
                 };
 
-                (new FallModelingResultView(MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f),
-                    MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv) )).Show();
+                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv) )).Show();
 
                 return;
             }
 
-            if (IsArchimede && !IsLinear && !IsSquare)
+            if (!IsArchimede && IsLinear && !IsSquare)
+            {
+                var v0 = InitialSpeed;
+                var h0 = Height;
+                var g = -Gravity;
+                var k = LinearSpeed;
+                var m = Mass;
+                Func<double, double> exp = delegate (double t) {
+                    return Math.Exp((k / m) * t);
+                };
+
+                Func<double, double> fy = delegate (double t) {
+                    return g * m / k * t + (v0 - g * m / k) * (m / k) * exp(t);
+                };
+
+                Func<double, double> fv = delegate (double t) {
+                    return g * m / k + (v0 - g * m / k) * exp(t);
+                };
+
+                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv))).Show();
+
+                return;
+            }
+
+            if (!IsArchimede && !IsLinear && !IsSquare)
             {
                 Func<double, double> fy = delegate (double t) {
                     return Height + InitialSpeed * t - (Gravity / 2) * t * t;
@@ -327,13 +354,12 @@ namespace MKM_Labs.ViewModels
                     return InitialSpeed - Gravity * t;
                 };
 
-                (new FallModelingResultView(MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f),
-                    MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv))).Show();
+                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv))).Show();
 
                 return;
             }
 
-            (new FallModelingResultView(MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f))).Show();
+            (new FallModelingResultView(Res)).Show();
         }
 
         #endregion
