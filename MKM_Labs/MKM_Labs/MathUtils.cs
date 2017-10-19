@@ -8,7 +8,7 @@ namespace MKM_Labs
 {
     static class MathUtils
     {
-        public static List<double> EulerCromer(IEnumerable<double> xs)
+        public static List<double> EulerCromer(IEnumerable<double> xs, Func<double, double, double> f)
         {
             return null;
         }

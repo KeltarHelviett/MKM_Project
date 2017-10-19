@@ -206,7 +206,7 @@ namespace MKM_Labs.ViewModels
                     IsSquare = false;
                 OnPropertyChanged(nameof(IsLinear));
             }
-        }// Алеутская 45 7 этаж 703 офис
+        }
 
         private bool isSquare = false;
 
@@ -229,5 +229,14 @@ namespace MKM_Labs.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #region PublicMethods
+
+        public void Calculate()
+        {
+            
+        }
+
+        #endregion
     }
 }
