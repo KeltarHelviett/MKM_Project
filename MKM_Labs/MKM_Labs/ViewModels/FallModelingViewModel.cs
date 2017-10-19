@@ -221,6 +221,20 @@ namespace MKM_Labs.ViewModels
                 OnPropertyChanged(nameof(IsSquare));
             }
         }
+
+        private double mass = 0.3;
+
+        public double Mass
+        {
+            get { return mass; }
+            set
+            {
+                if (mass == value)
+                    return;
+                mass = value;
+                OnPropertyChanged(nameof(Mass));
+            }
+        }
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -234,7 +248,7 @@ namespace MKM_Labs.ViewModels
 
         public void Calculate()
         {
-            
+            // doing calculations
         }
 
         #endregion
