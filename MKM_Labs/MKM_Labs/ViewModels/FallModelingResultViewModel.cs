@@ -45,6 +45,7 @@ namespace MKM_Labs.ViewModels
             {
                 Values = AnaliticalYs
             });
+            hasAnaliticalSolution = true;
         }
 
         #endregion
@@ -80,10 +81,11 @@ namespace MKM_Labs.ViewModels
                     {
                         Values = Vs
                     });
-                    Collection.Add(new LineSeries()
-                    {
-                        Values = AnaliticalVs
-                    });
+                    if (hasAnaliticalSolution)
+                        Collection.Add(new LineSeries()
+                        {
+                            Values = AnaliticalVs
+                        });
                 }
                 OnPropertyChanged(nameof(IsSpeed));
             }
@@ -106,15 +108,17 @@ namespace MKM_Labs.ViewModels
                     {
                         Values = Ys
                     });
-                    Collection.Add(new LineSeries()
-                    {
-                        Values = AnaliticalYs
-                    });
+                    if (hasAnaliticalSolution)
+                        Collection.Add(new LineSeries()
+                        {
+                            Values = AnaliticalYs
+                        });
                 }
                 OnPropertyChanged(nameof(IsY));
             }
         }
 
+        public bool hasAnaliticalSolution { set; get; } = false;
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
