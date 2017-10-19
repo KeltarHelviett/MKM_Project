@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using MKM_Labs;
+using MKM_Labs.Views;
 
 namespace MKM_Labs.ViewModels
 {
@@ -24,6 +24,34 @@ namespace MKM_Labs.ViewModels
                     return;
                 height = value;
                 OnPropertyChanged(nameof(Height));
+            }
+        }
+
+        private double volume = 10;
+
+        public double Volume
+        {
+            get { return volume; }
+            set
+            {
+                if (value == volume)
+                    return;
+                volume = value;
+                OnPropertyChanged(nameof(Volume));
+            }
+        }
+
+        private double densityEnv = 1000;
+
+        public double DensityEnv
+        {
+            get { return densityEnv; }
+            set
+            {
+                if (value == densityEnv)
+                    return;
+                densityEnv = value;
+                OnPropertyChanged(nameof(DensityEnv));
             }
         }
 
@@ -247,10 +275,31 @@ namespace MKM_Labs.ViewModels
 
         #region PublicMethods
 
-        public Tuple<List<double>, List<double>, List<double>> Calculate()
+        public void Calculate()
         {
             var steporn = step;
             if (!IsStep) steporn = N;
+
+            Func<double, double, double, double> f = delegate (double y, double v, double dt) {
+                double res = -Gravity;
+
+                if (IsArchimede)
+                {
+                    res += DensityEnv * Volume / (Mass);
+                }
+
+                if (IsLinear)
+                {
+                    res -= LinearSpeed * v / Mass;
+                }
+
+                if (IsSquare)
+                {
+                    res -= SquareSpeed * Math.Abs(v) * v / Mass;
+                }
+
+                return res;
+            };
 
             if ( !IsArchimede && !IsLinear && !IsSquare )
             {
@@ -262,7 +311,10 @@ namespace MKM_Labs.ViewModels
                     return InitialSpeed - Gravity * t;
                 };
 
-                return MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv);
+                (new FallModelingResultView(MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f),
+                    MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv) )).Show();
+
+                return;
             }
 
             if (IsArchimede && !IsLinear && !IsSquare)
@@ -275,30 +327,13 @@ namespace MKM_Labs.ViewModels
                     return InitialSpeed - Gravity * t;
                 };
 
-                return MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv);
+                (new FallModelingResultView(MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f),
+                    MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, fy, fv))).Show();
+
+                return;
             }
 
-            Func<double, double, double, double> f = delegate (double y, double v, double dt) {
-                double res = Gravity;
-
-                if (IsArchimede) {
-                    //res += 
-                }
-
-                if (IsLinear)
-                {
-                    //res += 
-                }
-
-                if (IsSquare)
-                {
-                    //res += 
-                }
-
-                return 0.0;
-            };
-            
-            return MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f);
+            (new FallModelingResultView(MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f))).Show();
         }
 
         #endregion

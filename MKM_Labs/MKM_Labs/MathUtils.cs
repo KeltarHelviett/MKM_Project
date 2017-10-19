@@ -21,8 +21,11 @@ namespace MKM_Labs
             var vs = new List<double> { Capacity = ts.Count() };
             for (int i = 0; i < step; ++i)
             {
-                vs.Add(fy(ts[i]));
-                ys.Add(fv(ts[i]));
+                vs.Add(fv(ts[i]));
+
+                var h = fy(ts[i]);
+                if (h < 0) h = 0;
+                ys.Add(h);
             }
             return Tuple.Create(ts, ys, vs);
         }
@@ -38,7 +41,10 @@ namespace MKM_Labs
             {
                 var deltat = ts[i + 1] - ts[i];
                 vs.Add(vs[i] + deltat * f(ys[i], vs[i], deltat));
-                ys.Add(ys[i] + deltat * vs[i + 1]);
+
+                var h = ys[i] + deltat * vs[i + 1];
+                if (h < 0) h = 0;
+                ys.Add(h);
             }
             return Tuple.Create(ts, ys, vs);
         }

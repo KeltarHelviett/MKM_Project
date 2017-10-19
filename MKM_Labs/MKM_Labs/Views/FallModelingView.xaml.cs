@@ -25,7 +25,7 @@ namespace MKM_Labs.Views
 
         private void CalculateBtnClick(object sender, RoutedEventArgs e)
         {
-
+            ((FallModelingViewModel)DataContext).Calculate();
         }
     }
 }

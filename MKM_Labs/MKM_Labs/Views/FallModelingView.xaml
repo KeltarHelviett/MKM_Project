@@ -82,7 +82,7 @@
                  TextWrapping="Wrap" Text="{Binding Volume, Mode=TwoWay}" VerticalAlignment="Center" Width="90"/>
         <Label x:Name="DensityLabel" Content="Плотность" HorizontalAlignment="Right" Margin="3,3,3,3" Grid.Row="10" VerticalAlignment="Center"/>
         <TextBox x:Name="DensityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,3,3" Grid.Row="10" 
-                 TextWrapping="Wrap" Text="{Binding Density, Mode=TwoWay}" VerticalAlignment="Top" Width="90"/>
+                 TextWrapping="Wrap" Text="{Binding DensityEnv, Mode=TwoWay}" VerticalAlignment="Top" Width="90"/>
 
     </Grid>
 </Window>
