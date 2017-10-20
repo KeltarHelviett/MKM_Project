@@ -281,8 +281,9 @@ namespace MKM_Labs.ViewModels
             if (!IsStep) steporn = N;
 
             Func<double, double, double, double> f = delegate (double y, double v, double dt) {
-                double res = -Gravity;
+                var tmp = (1 + y/64000000) * (1 + y / 64000000);
 
+                double res = -Gravity / tmp;
                 if (IsArchimede)
                 {
                     res += DensityEnv * Volume / (Mass) * Gravity;
@@ -324,6 +325,7 @@ namespace MKM_Labs.ViewModels
             {
                 var v0 = InitialSpeed;
                 var h0 = Height;
+                
                 var g = Gravity;
                 var k = LinearSpeed;
                 var m = Mass;
