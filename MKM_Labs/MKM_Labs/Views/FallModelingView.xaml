@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MKM_Labs.Views"
         mc:Ignorable="d"
-        Title="FallModelingView" Height="406" Width="500">
+        Title="FallModelingView" Height="509" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -24,8 +24,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="113*"/>
         </Grid.RowDefinitions>
         <Label x:Name="TitleLabel" Content="Моделирование явления падения тел в поле тяжести Земли" HorizontalAlignment="Center" Margin="19,0" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="4" Height="31" Width="454"/>
         <Label x:Name="InitialConditionsLabel" Content="Начальные условия" HorizontalAlignment="Center" Margin="70,0,17,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2" Height="29" Width="136" Grid.Column="1"/>
@@ -80,9 +81,13 @@
         <Label x:Name="VolumeLabel" Content="Объем" Grid.Column="2" HorizontalAlignment="Right" Margin="0,3,3,3" Grid.Row="9" VerticalAlignment="Center"/>
         <TextBox x:Name="VolumeTextBox" Grid.Column="3" HorizontalAlignment="Left" Height="22" Margin="3,5,0,5" Grid.Row="9"
                  TextWrapping="Wrap" Text="{Binding Volume, Mode=TwoWay}" VerticalAlignment="Center" Width="90"/>
-        <Label x:Name="DensityLabel" Content="Плотность" HorizontalAlignment="Right" Margin="3,3,3,3" Grid.Row="10" VerticalAlignment="Center"/>
-        <TextBox x:Name="DensityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,3,3" Grid.Row="10" 
+        <Label x:Name="DensityLabel" Content="Плотность" HorizontalAlignment="Right" Margin="0,3,3,3" Grid.Row="10" VerticalAlignment="Center"/>
+        <TextBox x:Name="DensityTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,0,0" Grid.Row="10" 
                  TextWrapping="Wrap" Text="{Binding DensityEnv, Mode=TwoWay}" VerticalAlignment="Top" Width="90"/>
+        <ListBox x:Name="ExperimentsLB" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" ItemsSource="{Binding Path=ExperimentItems, Mode=TwoWay}"
+                 Width="100" Margin="19,1,0,0" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="12" PreviewMouseDoubleClick="ExperimentsLBPreviewMouseDoubleClick">
+                
+        </ListBox>
 
     </Grid>
 </Window>

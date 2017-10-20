@@ -27,5 +27,17 @@ namespace MKM_Labs.Views
         {
             ((FallModelingViewModel)DataContext).Calculate();
         }
+
+        private void ExperimentsLBPreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = ExperimentsLB.SelectedItem as ExperimentItem;
+            if (item != null)
+            {
+                if (item.Solutions.Count == 2)
+                    (new FallModelingResultView(item.Solutions[0], item.Solutions[1])).Show();
+                else
+                    (new FallModelingResultView(item.Solutions[0])).Show();
+            }
+        }
     }
 }

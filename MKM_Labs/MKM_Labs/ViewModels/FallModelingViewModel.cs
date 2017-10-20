@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,8 +10,15 @@ using MKM_Labs.Views;
 
 namespace MKM_Labs.ViewModels
 {
+    class ExperimentItem
+    {
+        public List<Tuple<List<double>, List<double>, List<double>>> Solutions { set; get; }
+        public string Content;
+    }
+
     class FallModelingViewModel: INotifyPropertyChanged
     {
+
         #region PublicProperties
 
         private double height = 100;
@@ -264,6 +272,22 @@ namespace MKM_Labs.ViewModels
                 OnPropertyChanged(nameof(Mass));
             }
         }
+
+        private ObservableCollection<ExperimentItem> experimentsItems = new ObservableCollection<ExperimentItem>();
+
+        public ObservableCollection<ExperimentItem> ExperimentItems
+        {
+            get { return experimentsItems; }
+            set
+            {
+                if (value == experimentsItems)
+                    return;
+                experimentsItems = value;
+                OnPropertyChanged(nameof(ExperimentItems));
+            }
+        }
+
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -316,7 +340,14 @@ namespace MKM_Labs.ViewModels
                     return InitialSpeed - newg * t;
                 };
 
-                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv) )).Show();
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                ExperimentItems.Add(new ExperimentItem
+                {
+                    Content = "Lolkek",
+                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                });
+
+                (new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -341,7 +372,10 @@ namespace MKM_Labs.ViewModels
                     return -g * m / k + (v0 + g * m / k) * exp(t);
                 };
 
-                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv))).Show();
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                ExperimentItems.Add(new ExperimentItem {Content = "LolkekChebureck",
+                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> {Res, analiticalAns} });
+                (new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -365,7 +399,13 @@ namespace MKM_Labs.ViewModels
                     return -g * m / k + (v0 + g * m / k) * exp(t);
                 };
 
-                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv))).Show();
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                ExperimentItems.Add(new ExperimentItem
+                {
+                    Content = "Lolkek",
+                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                });
+                (new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -379,12 +419,21 @@ namespace MKM_Labs.ViewModels
                 Func<double, double> fv = delegate (double t) {
                     return InitialSpeed - Gravity * t;
                 };
-
-                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv))).Show();
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                ExperimentItems.Add(new ExperimentItem
+                {
+                    Content = "Lolkek",
+                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                });
+                (new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
-
+            ExperimentItems.Add(new ExperimentItem
+            {
+                Content = "Lolkek",
+                Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res}
+            });
             (new FallModelingResultView(Res)).Show();
         }
 
