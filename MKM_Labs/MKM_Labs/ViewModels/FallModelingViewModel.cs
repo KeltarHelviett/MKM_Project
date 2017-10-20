@@ -62,7 +62,7 @@ namespace MKM_Labs.ViewModels
             get { return initialSpeed; }
             set
             {
-                if (value == height)
+                if (value == initialSpeed)
                     return;
                 initialSpeed = value;
                 OnPropertyChanged(nameof(InitialSpeed));
@@ -285,7 +285,7 @@ namespace MKM_Labs.ViewModels
 
                 if (IsArchimede)
                 {
-                    res += DensityEnv * Volume / (Mass);
+                    res += DensityEnv * Volume / (Mass) * Gravity;
                 }
 
                 if (IsLinear)
@@ -324,19 +324,43 @@ namespace MKM_Labs.ViewModels
             {
                 var v0 = InitialSpeed;
                 var h0 = Height;
-                var g = -Gravity;
+                var g = Gravity;
                 var k = LinearSpeed;
                 var m = Mass;
                 Func<double, double> exp = delegate (double t) {
-                    return Math.Exp((k / m) * t);
+                    return Math.Exp(-(k / m) * t);
                 };
 
                 Func<double, double> fy = delegate (double t) {
-                    return g * m / k * t + (v0 - g * m / k) * (m / k) * exp(t);
+                    return -g * m / k * t - (v0 + g * m / k) * (m / k) * (exp(t) - 1) + h0;
                 };
 
                 Func<double, double> fv = delegate (double t) {
-                    return g * m / k + (v0 - g * m / k) * exp(t);
+                    return -g * m / k + (v0 + g * m / k) * exp(t);
+                };
+
+                (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv))).Show();
+
+                return;
+            }
+
+            if (IsArchimede && IsLinear && !IsSquare)
+            {
+                var v0 = InitialSpeed;
+                var h0 = Height;
+                var g = Gravity * (1 - DensityEnv * Volume / Mass);
+                var k = LinearSpeed;
+                var m = Mass;
+                Func<double, double> exp = delegate (double t) {
+                    return Math.Exp(-(k / m) * t);
+                };
+
+                Func<double, double> fy = delegate (double t) {
+                    return -g * m / k * t - (v0 + g * m / k) * (m / k) * (exp(t) - 1) + h0;
+                };
+
+                Func<double, double> fv = delegate (double t) {
+                    return -g * m / k + (v0 + g * m / k) * exp(t);
                 };
 
                 (new FallModelingResultView(Res, MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv))).Show();
