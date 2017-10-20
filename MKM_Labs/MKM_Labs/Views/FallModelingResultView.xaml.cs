@@ -33,5 +33,10 @@ namespace MKM_Labs.Views
         {
             DataContext = new FallModelingResultViewModel(numeric.Item1, numeric.Item2, numeric.Item3, analitical.Item2, analitical.Item3);
         }
+
+        private void SaveToCsvBtnClick(object sender, RoutedEventArgs e)
+        {
+            // HERE IS GONNA BE ((FallModelingResultViewModel) DataContext).SaveToCsv();
+        }
     }
 }

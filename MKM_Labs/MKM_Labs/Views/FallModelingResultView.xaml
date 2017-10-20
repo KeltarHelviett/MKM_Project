@@ -8,13 +8,12 @@
         mc:Ignorable="d"
         Title="FallModelingResultView" Height="500" Width="500">
     <Grid>
-        <lvc:CartesianChart Series="{Binding Collection}" Margin="3,3,3,0" 
-                            VerticalAlignment="Top" Height="350" Zoom="Xy">
-            
-        </lvc:CartesianChart>
+        <lvc:CartesianChart Series="{Binding Collection}" Margin="3,3,3,116" Zoom="Xy"/>
         <RadioButton x:Name="isSpeedRB" Content="Скорость" HorizontalAlignment="Left" Margin="76,387,0,0" 
                      IsChecked="{Binding IsSpeed, Mode=TwoWay}" VerticalAlignment="Top"/>
         <RadioButton x:Name="isYRB" Content="Высота" HorizontalAlignment="Left" Margin="301,387,0,0" 
                      IsChecked="{Binding IsY, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <Button x:Name="SaveToCsvBtn" Content="Сохранить в CSV" HorizontalAlignment="Left" Margin="194,419,0,0"
+                VerticalAlignment="Top" Width="Auto"/>
     </Grid>
 </Window>
