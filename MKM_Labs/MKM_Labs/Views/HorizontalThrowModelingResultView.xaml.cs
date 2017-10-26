@@ -20,7 +20,21 @@ namespace MKM_Labs.Views
         public HorizontalThrowModelingResultView()
         {
             InitializeComponent();
-            DataContext = new HorizontalThrowModelingResultViewModel();
+        }
+
+        public HorizontalThrowModelingResultView(
+            Tuple<List<double>, Tuple<List<double>, List<double>>, Tuple<List<double>, List<double>>> numericValues) :
+            this()
+        {
+            DataContext = new HorizontalThrowModelingResultViewModel(numericValues);
+        }
+
+        public HorizontalThrowModelingResultView(
+            Tuple<List<double>, Tuple<List<double>, List<double>>, Tuple<List<double>, List<double>>> numericValues,
+            Tuple<List<double>, Tuple<List<double>, List<double>>, Tuple<List<double>, List<double>>> analyticalValues) :
+            this()
+        {
+            DataContext = new HorizontalThrowModelingResultViewModel(numericValues, analyticalValues);
         }
     }
 }
