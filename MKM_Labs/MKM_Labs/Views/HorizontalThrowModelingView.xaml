@@ -118,7 +118,8 @@
                Grid.Row="14" VerticalAlignment="Top" Grid.Column="1" Visibility="{Binding Path=IsLinear, Converter={StaticResource BoolToVis}, Mode=TwoWay}"/>
         <TextBox x:Name="NuTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Margin="3,3,0,0" Grid.Row="14" Grid.Column="2" 
                  Text="{Binding Nu, Mode=TwoWay}" VerticalAlignment="Top" Width="90" Visibility="{Binding Path=IsLinear, Converter={StaticResource BoolToVis}}"/>
-        <Button x:Name="CalculateBtn" Content="Рассчитать" Grid.Row="15" Width="Auto" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button x:Name="CalculateBtn" Content="Рассчитать" Grid.Row="15" Width="Auto" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Click="CalculateBtnOnClick"/>
 
     </Grid>
 </Window>

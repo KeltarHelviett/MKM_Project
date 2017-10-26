@@ -278,7 +278,7 @@ namespace MKM_Labs.ViewModels
             }
         }
 
-        private double mass = 0.3;
+        private double mass = 2;
 
         public double Mass
         {
@@ -288,11 +288,15 @@ namespace MKM_Labs.ViewModels
                 if (mass == value)
                     return;
                 mass = value;
+                density = mass / volume;
+                volume = mass / density;
+                OnPropertyChanged(nameof(Volume));
+                OnPropertyChanged(nameof(Density));
                 OnPropertyChanged(nameof(Mass));
             }
         }
 
-        private double density = 0.3;
+        private double density = 2;
 
         public double Density
         {
@@ -302,11 +306,15 @@ namespace MKM_Labs.ViewModels
                 if (density == value)
                     return;
                 density = value;
+                Volume = mass / density;
+                mass = Volume * density;
+                OnPropertyChanged(nameof(Volume));
                 OnPropertyChanged(nameof(Density));
+                OnPropertyChanged(nameof(Mass));
             }
         }
 
-        private double volume = 0.5;
+        private double volume = 1;
 
         public double Volume
         {
@@ -316,7 +324,11 @@ namespace MKM_Labs.ViewModels
                 if (volume == value)
                     return;
                 volume = value;
+                density = mass / volume;
+                mass = volume * density;
                 OnPropertyChanged(nameof(Volume));
+                OnPropertyChanged(nameof(Density));
+                OnPropertyChanged(nameof(Mass));
             }
         }
 
