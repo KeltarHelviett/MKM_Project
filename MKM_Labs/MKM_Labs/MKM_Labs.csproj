@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\HorizontalThrowModelingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,11 +90,15 @@
     <Compile Include="MathUtils.cs" />
     <Compile Include="ViewModels\FallModelingResultViewModel.cs" />
     <Compile Include="ViewModels\FallModelingViewModel.cs" />
+    <Compile Include="ViewModels\HorizontalThrowModelingViewModel.cs" />
     <Compile Include="Views\FallModelingResultView.xaml.cs">
       <DependentUpon>FallModelingResultView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FallModelingView.xaml.cs">
       <DependentUpon>FallModelingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HorizontalThrowModelingView.xaml.cs">
+      <DependentUpon>HorizontalThrowModelingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

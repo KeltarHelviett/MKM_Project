@@ -54,6 +54,8 @@
                  TextWrapping="Wrap" Text="{Binding N, Mode=TwoWay}" VerticalAlignment="Center" Width="90" IsEnabled="{Binding IsN, Mode=TwoWay}"/>
         <RadioButton x:Name="StepLabel" Content="Шаг" HorizontalAlignment="Right" Margin="0,7,3,7" Grid.Row="5"
                      VerticalAlignment="Center" Grid.Column="2" GroupName="CalculationSchemeParams" IsChecked="{Binding IsStep, Mode=TwoWay}"/>
+        <TextBox x:Name="StepTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Margin="3,3,0,0" Grid.Row="5" Grid.Column="3" 
+                 Text="{Binding Step, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsStep, Mode=TwoWay}"/>
         <Label x:Name="ModelParamsLabel" Content="Параметры модели" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="73,0,14,0"
                Grid.Row="6" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
         <Label x:Name="GravityLabel" Content="Сила Тяжести" HorizontalAlignment="Right" Margin="0,3,3,4" Grid.Row="7"
@@ -73,8 +75,6 @@
         <TextBox x:Name="ResistenceStrengthLinearSpeedTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3,3,0,0" Grid.Row="8"
                  TextWrapping="Wrap" Text="{Binding LinearSpeed, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsLinear, Mode=TwoWay}"/>
         <Button x:Name="CalculateBtn" Content="Рассчитать" Grid.Column="1" HorizontalAlignment="Left" Margin="10,9,0,0" Grid.Row="11" VerticalAlignment="Top" Width="75" Click="CalculateBtnClick"/>
-        <TextBox x:Name="StepTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Margin="3,3,0,0" Grid.Row="5" Grid.Column="3" 
-                 Text="{Binding Step, Mode=TwoWay}" VerticalAlignment="Top" Width="90" IsEnabled="{Binding IsStep, Mode=TwoWay}"/>
         <Label x:Name="MassLabel" Content="Масса" HorizontalAlignment="Right" Margin="0,3,3,3" Grid.Row="9" VerticalAlignment="Center"/>
         <TextBox x:Name="MassTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3,5,0,5" Grid.Row="9" 
                  TextWrapping="Wrap" Text="{Binding Mass, Mode=TwoWay}" VerticalAlignment="Center" Width="90"/>
