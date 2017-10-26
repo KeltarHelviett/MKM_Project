@@ -36,5 +36,10 @@ namespace MKM_Labs.Views
         {
             DataContext = new HorizontalThrowModelingResultViewModel(numericValues, analyticalValues);
         }
+
+        private void SaveToCsvBtnClick(object sender, RoutedEventArgs e)
+        {
+            ((HorizontalThrowModelingResultViewModel) DataContext).SaveToCsv();
+        }
     }
 }

@@ -32,6 +32,6 @@
         <RadioButton x:Name="IsYx" Content="y(x)" HorizontalAlignment="Left" Margin="3,3" 
                      IsChecked="{Binding IsYx, Mode=TwoWay}" VerticalAlignment="Center" Grid.Column="4" Grid.Row="1" Height="15" Width="Auto"/>
         <Button x:Name="SaveToCsvBtn" Content="Сохранить в CSV" HorizontalAlignment="Center" Margin="0"
-                VerticalAlignment="Bottom" Width="96" Grid.ColumnSpan="5" Height="20" Grid.Row="2"/>
+                VerticalAlignment="Bottom" Width="96" Grid.ColumnSpan="5" Height="20" Grid.Row="2" Click="SaveToCsvBtnClick"/>
     </Grid>
 </Window>

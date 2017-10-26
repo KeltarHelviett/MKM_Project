@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using Microsoft.Win32;
 
 namespace MKM_Labs.ViewModels
 {
@@ -221,6 +223,27 @@ namespace MKM_Labs.ViewModels
                 }
                 OnPropertyChanged(nameof(IsYx));
             }
+        }
+
+        #endregion
+
+        #region PublicMethods
+
+        public void SaveToCsv()
+        {
+            var dlg = new SaveFileDialog {Filter = "CSV documents (.csv)|*.csv"};
+            var result = dlg.ShowDialog();
+            if (!result.HasValue || !result.Value) return;
+            var filename = dlg.FileName;
+            var content = HasAnalytical ? "k,t,x(t),y(t),Vx(t),Vy(t)\n" : "k,t,x(t),y(t),Vx(t),Vy(t),ax(t),ay(t),aVx(t),aVy(t)\n";
+            for (int i = 0; i < Yt.Count; i++)
+            {
+                content += i + "," + Xt[i].X + "," + Yt[i].Y + "," + Vxt[i].Y + "," + Vyt[i].Y;
+                if (HasAnalytical)
+                    content += "," + AnalyticalXt[i].X + "," + AnalyticalYt[i].Y + "," + AnalyticalVxt[i].Y + "," + AnalyticalVyt[i].Y;
+                content += '\n';
+            }
+            File.WriteAllText(filename, content);
         }
 
         #endregion
