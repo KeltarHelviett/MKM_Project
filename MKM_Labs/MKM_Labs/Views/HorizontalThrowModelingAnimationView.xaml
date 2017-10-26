@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="HorizontalThrowModelingAnimationView" Height="300" Width="300">
     <Grid>
-        <Canvas HorizontalAlignment="Stretch" Height="NaN" Margin="0" VerticalAlignment="Stretch" Width="NaN"/>
+        <Canvas x:Name="ExperimentCanvas" HorizontalAlignment="Stretch" Height="NaN" Margin="0" VerticalAlignment="Stretch" Width="NaN"/>
 
     </Grid>
 </Window>

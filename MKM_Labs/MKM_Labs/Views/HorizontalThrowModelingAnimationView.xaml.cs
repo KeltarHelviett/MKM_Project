@@ -25,7 +25,7 @@ namespace MKM_Labs.Views
         public HorizontalThrowModelingAnimationView(List<Tuple<double, double>> xy)
         {
 
-            DataContext = new HorizontalThrowModelingAnimationViewModel(xy);
+            DataContext = new HorizontalThrowModelingAnimationViewModel(xy, ExperimentCanvas);
         }
     }
 }

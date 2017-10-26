@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace MKM_Labs.ViewModels
 {
@@ -12,12 +13,14 @@ namespace MKM_Labs.ViewModels
     {
         #region Ctor
 
-        public HorizontalThrowModelingAnimationViewModel(List<Tuple<double, double>> xy)
+        public HorizontalThrowModelingAnimationViewModel(List<Tuple<double, double>> xy, Canvas ExperimentCanvas)
         {
-            
+            this.ExperimentCanvas = ExperimentCanvas;
         }
 
         #endregion
+
+        public Canvas ExperimentCanvas { set; get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
