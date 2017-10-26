@@ -16,17 +16,17 @@ namespace MKM_Labs.ViewModels
         #region Ctor
 
         public HorizontalThrowModelingResultViewModel(
-            Tuple<List<double>, Tuple<List<double>, List<double>>, Tuple<List<double>, List<double>>> numericValues)
+            Tuple<List<double>, List<Tuple<double, double>>, List<Tuple<double, double>>> numericValues)
         {
-            List<double> ts = numericValues.Item1, xs = numericValues.Item2.Item1, ys = numericValues.Item2.Item2,
-                vxs = numericValues.Item3.Item1, vys = numericValues.Item3.Item2;
+            List<double> ts = numericValues.Item1;
+            List<Tuple<double, double>> xy = numericValues.Item3, vs = numericValues.Item3;
             for (int i = 0; i < ts.Count; ++i)
             {
-                Yt.Add(new ObservablePoint(ts[i], ys[i]));
-                Xt.Add(new ObservablePoint(ts[i], xs[i]));
-                Yx.Add(new ObservablePoint(xs[i], ys[i]));
-                Vxt.Add(new ObservablePoint(xs[i], vxs[i]));
-                Vyt.Add(new ObservablePoint(xs[i], vys[i]));
+                Yt.Add(new ObservablePoint(ts[i], xy[i].Item1));
+                Xt.Add(new ObservablePoint(ts[i], xy[i].Item2));
+                Yx.Add(new ObservablePoint(xy[i].Item1, xy[i].Item2));
+                Vxt.Add(new ObservablePoint(ts[i], vs[i].Item1));
+                Vyt.Add(new ObservablePoint(ts[i], vs[i].Item2));
             }
             Collection.Add(new LineSeries()
             {
@@ -35,18 +35,18 @@ namespace MKM_Labs.ViewModels
         }
 
         public HorizontalThrowModelingResultViewModel(
-            Tuple<List<double>, Tuple<List<double>, List<double>>, Tuple<List<double>, List<double>>> numericValues,
-            Tuple<List<double>, Tuple<List<double>, List<double>>, Tuple<List<double>, List<double>>> analyticalValues): this(numericValues)
+            Tuple<List<double>, List<Tuple<double, double>>, List<Tuple<double, double>>> numericValues,
+            Tuple<List<double>, List<Tuple<double, double>>, List<Tuple<double, double>>> analyticalValues): this(numericValues)
         {
-            List<double> ts = numericValues.Item1, xs = numericValues.Item2.Item1, ys = numericValues.Item2.Item2,
-                vxs = numericValues.Item3.Item1, vys = numericValues.Item3.Item2;
+            List<double> ts = analyticalValues.Item1;
+            List<Tuple<double, double>> xy = analyticalValues.Item3, vs = analyticalValues.Item3;
             for (int i = 0; i < ts.Count; ++i)
             {
-                AnalyticalYt.Add(new ObservablePoint(ts[i], ys[i]));
-                AnalyticalXt.Add(new ObservablePoint(ts[i], xs[i]));
-                AnalyticalYx.Add(new ObservablePoint(xs[i], ys[i]));
-                AnalyticalVxt.Add(new ObservablePoint(xs[i], vxs[i]));
-                AnalyticalVyt.Add(new ObservablePoint(xs[i], vys[i]));
+                AnalyticalYt.Add(new ObservablePoint(ts[i], xy[i].Item1));
+                AnalyticalXt.Add(new ObservablePoint(ts[i], xy[i].Item2));
+                AnalyticalYx.Add(new ObservablePoint(xy[i].Item1, xy[i].Item2));
+                AnalyticalVxt.Add(new ObservablePoint(ts[i], vs[i].Item1));
+                AnalyticalVyt.Add(new ObservablePoint(ts[i], vs[i].Item2));
             }
             Collection.Add(new LineSeries()
             {
