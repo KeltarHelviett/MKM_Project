@@ -36,7 +36,7 @@ namespace MKM_Labs.Views
 
         private void SaveToCsvBtnClick(object sender, RoutedEventArgs e)
         {
-            // HERE IS GONNA BE ((FallModelingResultViewModel) DataContext).SaveToCsv();
+            ((FallModelingResultViewModel) DataContext).SaveToCsv();
         }
     }
 }

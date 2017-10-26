@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using MKM_Labs.Views;
 
 namespace MKM_Labs.ViewModels
 {
@@ -381,6 +381,183 @@ namespace MKM_Labs.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void Calculate()
+        {
+            var steporn = step;
+            if (!IsStep) steporn = N;
+
+            var alpha = Angle * Math.PI / 180;
+            var v0x = InitialSpeed * Math.Cos(alpha);
+            var v0y = InitialSpeed * Math.Sin(alpha);
+
+            Func<double, double, double, double> Fy = delegate (double y, double v, double dt) {
+                var tmp = (1 + y / 64000000) * (1 + y / 64000000);
+
+                double res = -Gravity / tmp;
+                if (IsArchimede)
+                {
+                    res += EnvironmentDensity * Volume / (Mass) * Gravity;
+                }
+
+                if (IsLinear)
+                {
+                    res -= LinearSpeed * v / Mass;
+                }
+
+                if (IsSquare)
+                {
+                    res -= SquareSpeed * Math.Abs(v) * v / Mass;
+                }
+
+                return res;
+            };
+
+            Func<double, double, double, double> Fx = delegate (double x, double v, double dt) {
+                double res = 0.0;
+
+                if (IsLinear)
+                {
+                    res -= LinearSpeed * v / Mass;
+                }
+
+                return res;
+            };
+
+            var Res = MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, Fx, Fy);
+
+            if (IsArchimede && !IsLinear && !IsSquare)
+            {
+                var newg = Gravity * (1 - EnvironmentDensity * Volume / Mass);
+                Func<double, Tuple<double, double>> fy = delegate (double t) {
+                    var x = X0 + v0x * t;
+                    var y = Height + v0y * t - (newg / 2) * t * t;
+
+                    return new Tuple<double, double>(x, y);
+                };
+
+                Func<double, Tuple<double, double>> fv = delegate (double t) {
+                    var x = v0x;
+                    var y = v0y - newg * t;
+
+                    return new Tuple<double, double>(x, y);
+                };
+
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem
+                //{
+                //    Content = "Lolkek",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                //});
+
+                (new FallModelingResultView(Res, analiticalAns)).Show();
+
+                return;
+            }
+
+            if (!IsArchimede && IsLinear && !IsSquare)
+            {
+                var h0 = Height;
+
+                var g = Gravity;
+                var k = LinearSpeed;
+                var m = Mass;
+                Func<double, double> exp = delegate (double t) {
+                    return Math.Exp(-(k / m) * t);
+                };
+
+                Func<double, Tuple<double, double>> fy = delegate (double t) {
+                    var x = X0 + (1 - exp(t)) * v0x * m / k;
+                    var y = -g * m / k * t - (v0y + g * m / k) * (m / k) * (exp(t) - 1) + h0;
+
+                    return new Tuple<double, double>(x, y);
+                };
+
+                Func<double, Tuple<double, double>> fv = delegate (double t) {
+                    var x = v0x * exp(t);
+                    var y = -g * m / k + (v0y + g * m / k) * exp(t);
+
+                    return new Tuple<double, double>(x, y);
+                };
+
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem
+                //{
+                //    Content = "LolkekChebureck",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                //});
+                (new FallModelingResultView(Res, analiticalAns)).Show();
+
+                return;
+            }
+
+            if (IsArchimede && IsLinear && !IsSquare)
+            {
+                var h0 = Height;
+                var g = Gravity * (1 - EnvironmentDensity * Volume / Mass);
+                var k = LinearSpeed;
+                var m = Mass;
+                Func<double, double> exp = delegate (double t) {
+                    return Math.Exp(-(k / m) * t);
+                };
+
+                Func<double, Tuple<double, double>> fy = delegate (double t) {
+                    var x = X0 + (1 - exp(t)) * v0x * m / k;
+                    var y = -g * m / k * t - (v0y + g * m / k) * (m / k) * (exp(t) - 1) + h0;
+
+                    return new Tuple<double, double>(x, y);
+                };
+
+                Func<double, Tuple<double, double>> fv = delegate (double t) {
+                    var x = v0x * exp(t);
+                    var y = -g * m / k + (v0y + g * m / k) * exp(t);
+
+                    return new Tuple<double, double>(x, y);
+                };
+
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem
+                //{
+                //    Content = "Lolkek",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                //});
+                (new FallModelingResultView(Res, analiticalAns)).Show();
+
+                return;
+            }
+
+            if (!IsArchimede && !IsLinear && !IsSquare)
+            {
+                Func<double, Tuple<double, double>> fy = delegate (double t) {
+                    var x = X0 + v0x*t;
+                    var y = Height + v0y * t - (Gravity / 2) * t * t;
+
+                    return new Tuple<double, double>(x, y);
+                };
+
+                Func<double, Tuple<double, double>> fv = delegate (double t) {
+                    var x = v0x;
+                    var y = v0y - Gravity * t;
+
+                    return new Tuple<double, double>(x, y);
+                };
+                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem
+                //{
+                //    Content = "Lolkek",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                //});
+                (new FallModelingResultView(Res, analiticalAns)).Show();
+
+                return;
+            }
+            //ExperimentItems.Add(new ExperimentItem
+            //{
+            //    Content = "test",
+            //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res }
+            //});
+            (new FallModelingResultView(Res)).Show();
         }
     }
 }

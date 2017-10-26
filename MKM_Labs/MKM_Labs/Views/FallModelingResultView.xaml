@@ -14,6 +14,6 @@
         <RadioButton x:Name="isYRB" Content="Высота" HorizontalAlignment="Left" Margin="301,387,0,0" 
                      IsChecked="{Binding IsY, Mode=TwoWay}" VerticalAlignment="Top"/>
         <Button x:Name="SaveToCsvBtn" Content="Сохранить в CSV" HorizontalAlignment="Left" Margin="194,419,0,0"
-                VerticalAlignment="Top" Width="Auto"/>
+                VerticalAlignment="Top" Width="Auto" Click="SaveToCsvBtnClick"/>
     </Grid>
 </Window>

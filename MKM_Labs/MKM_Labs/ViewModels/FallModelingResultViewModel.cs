@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using System.IO;
+using System.Windows;
+using Microsoft.Win32;
 
 namespace MKM_Labs.ViewModels
 {
@@ -48,9 +51,30 @@ namespace MKM_Labs.ViewModels
             hasAnaliticalSolution = true;
         }
 
+        public void SaveToCsv()
+        {
+            var dlg = new SaveFileDialog();
+            dlg.Filter = "CSV documents (.csv)|*.csv";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            string filename = null;
+            if (result == true)
+            {
+                filename = dlg.FileName;
+            }
+
+            String content = "k|Time|Height|Volume\n";
+            for (int i = 0; i < Ys.Count; i++)
+            {
+                content += Convert.ToString(i) + "|" + Convert.ToString(Ys[i].X) + "|" + Convert.ToString(Ys[i].Y) + "|" + Convert.ToString(Vs[i].Y) + "\n";
+            }
+            File.WriteAllText(filename, content);
+
+        }
+
         #endregion
 
-        #region PublicProperties
+            #region PublicProperties
 
         public SeriesCollection Collection { get; set; } = new SeriesCollection();
 

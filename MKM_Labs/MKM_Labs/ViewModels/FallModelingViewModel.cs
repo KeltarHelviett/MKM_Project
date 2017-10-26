@@ -431,7 +431,7 @@ namespace MKM_Labs.ViewModels
             }
             ExperimentItems.Add(new ExperimentItem
             {
-                Content = "Lolkek",
+                Content = "test",
                 Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res}
             });
             (new FallModelingResultView(Res)).Show();
