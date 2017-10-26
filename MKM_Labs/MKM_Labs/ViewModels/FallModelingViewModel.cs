@@ -326,7 +326,7 @@ namespace MKM_Labs.ViewModels
                 return res;
             };
 
-            var Res = MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f);
+            //var Res = MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, f);
 
             if ( IsArchimede && !IsLinear && !IsSquare )
             {
@@ -340,14 +340,14 @@ namespace MKM_Labs.ViewModels
                     return InitialSpeed - newg * t;
                 };
 
-                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
-                ExperimentItems.Add(new ExperimentItem
-                {
-                    Content = "Lolkek",
-                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
-                });
+                //var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem
+                //{
+                //    Content = "Lolkek",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                //});
 
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                //(new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -372,10 +372,10 @@ namespace MKM_Labs.ViewModels
                     return -g * m / k + (v0 + g * m / k) * exp(t);
                 };
 
-                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
-                ExperimentItems.Add(new ExperimentItem {Content = "LolkekChebureck",
-                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> {Res, analiticalAns} });
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                //var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem {Content = "LolkekChebureck",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> {Res, analiticalAns} });
+                //(new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -399,13 +399,13 @@ namespace MKM_Labs.ViewModels
                     return -g * m / k + (v0 + g * m / k) * exp(t);
                 };
 
-                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
-                ExperimentItems.Add(new ExperimentItem
-                {
-                    Content = "Lolkek",
-                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
-                });
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                //var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem
+                //{
+                //    Content = "Lolkek",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                //});
+                //(new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -419,22 +419,22 @@ namespace MKM_Labs.ViewModels
                 Func<double, double> fv = delegate (double t) {
                     return InitialSpeed - Gravity * t;
                 };
-                var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
-                ExperimentItems.Add(new ExperimentItem
-                {
-                    Content = "Lolkek",
-                    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
-                });
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                //var analiticalAns = MKM_Labs.MathUtils.AnaliticalAns(InitialTime, EndTime, steporn, IsStep, fy, fv);
+                //ExperimentItems.Add(new ExperimentItem
+                //{
+                //    Content = "Lolkek",
+                //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
+                //});
+                //(new FallModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
-            ExperimentItems.Add(new ExperimentItem
-            {
-                Content = "test",
-                Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res}
-            });
-            (new FallModelingResultView(Res)).Show();
+            //ExperimentItems.Add(new ExperimentItem
+            //{
+            //    Content = "test",
+            //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res}
+            //});
+            //(new FallModelingResultView(Res)).Show();
         }
 
         #endregion

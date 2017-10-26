@@ -19,11 +19,11 @@ namespace MKM_Labs.ViewModels
             Tuple<List<double>, List<Tuple<double, double>>, List<Tuple<double, double>>> numericValues)
         {
             List<double> ts = numericValues.Item1;
-            List<Tuple<double, double>> xy = numericValues.Item3, vs = numericValues.Item3;
+            List<Tuple<double, double>> xy = numericValues.Item2, vs = numericValues.Item3;
             for (int i = 0; i < ts.Count; ++i)
             {
-                Yt.Add(new ObservablePoint(ts[i], xy[i].Item1));
-                Xt.Add(new ObservablePoint(ts[i], xy[i].Item2));
+                Yt.Add(new ObservablePoint(ts[i], xy[i].Item2));
+                Xt.Add(new ObservablePoint(ts[i], xy[i].Item1));
                 Yx.Add(new ObservablePoint(xy[i].Item1, xy[i].Item2));
                 Vxt.Add(new ObservablePoint(ts[i], vs[i].Item1));
                 Vyt.Add(new ObservablePoint(ts[i], vs[i].Item2));
@@ -39,11 +39,11 @@ namespace MKM_Labs.ViewModels
             Tuple<List<double>, List<Tuple<double, double>>, List<Tuple<double, double>>> analyticalValues): this(numericValues)
         {
             List<double> ts = analyticalValues.Item1;
-            List<Tuple<double, double>> xy = analyticalValues.Item3, vs = analyticalValues.Item3;
+            List<Tuple<double, double>> xy = analyticalValues.Item2, vs = analyticalValues.Item3;
             for (int i = 0; i < ts.Count; ++i)
             {
-                AnalyticalYt.Add(new ObservablePoint(ts[i], xy[i].Item1));
-                AnalyticalXt.Add(new ObservablePoint(ts[i], xy[i].Item2));
+                AnalyticalYt.Add(new ObservablePoint(ts[i], xy[i].Item2));
+                AnalyticalXt.Add(new ObservablePoint(ts[i], xy[i].Item1));
                 AnalyticalYx.Add(new ObservablePoint(xy[i].Item1, xy[i].Item2));
                 AnalyticalVxt.Add(new ObservablePoint(ts[i], vs[i].Item1));
                 AnalyticalVyt.Add(new ObservablePoint(ts[i], vs[i].Item2));
@@ -206,17 +206,17 @@ namespace MKM_Labs.ViewModels
                 if (value == isYx)
                     return;
                 isYx = value;
-                if (isVyt)
+                if (isYx)
                 {
                     Collection.Clear();
                     Collection.Add(new LineSeries()
                     {
-                        Values = Vyt
+                        Values = Yx
                     });
                     if (HasAnalytical)
                         Collection.Add(new LineSeries()
                         {
-                            Values = AnalyticalVyt
+                            Values = AnalyticalYx
                         });
                 }
                 OnPropertyChanged(nameof(IsYx));

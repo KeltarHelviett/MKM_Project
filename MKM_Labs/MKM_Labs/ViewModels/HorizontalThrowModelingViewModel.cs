@@ -422,10 +422,15 @@ namespace MKM_Labs.ViewModels
                     res -= LinearSpeed * v / Mass;
                 }
 
+                if (IsSquare)
+                {
+                    res -= SquareSpeed * Math.Abs(v) * v / Mass;
+                }
+
                 return res;
             };
 
-            var Res = MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, InitialSpeed, Fx, Fy);
+            var Res = MKM_Labs.MathUtils.EulerCromer(InitialTime, EndTime, steporn, IsStep, Height, v0y, X0, v0x, Fx, Fy);
 
             if (IsArchimede && !IsLinear && !IsSquare)
             {
@@ -451,7 +456,7 @@ namespace MKM_Labs.ViewModels
                 //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
                 //});
 
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                (new HorizontalThrowModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -487,7 +492,7 @@ namespace MKM_Labs.ViewModels
                 //    Content = "LolkekChebureck",
                 //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
                 //});
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                (new HorizontalThrowModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -522,7 +527,7 @@ namespace MKM_Labs.ViewModels
                 //    Content = "Lolkek",
                 //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
                 //});
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                (new HorizontalThrowModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -548,7 +553,7 @@ namespace MKM_Labs.ViewModels
                 //    Content = "Lolkek",
                 //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res, analiticalAns }
                 //});
-                (new FallModelingResultView(Res, analiticalAns)).Show();
+                (new HorizontalThrowModelingResultView(Res, analiticalAns)).Show();
 
                 return;
             }
@@ -557,7 +562,7 @@ namespace MKM_Labs.ViewModels
             //    Content = "test",
             //    Solutions = new List<Tuple<List<double>, List<double>, List<double>>> { Res }
             //});
-            (new FallModelingResultView(Res)).Show();
+            (new HorizontalThrowModelingResultView(Res)).Show();
         }
     }
 }

@@ -25,8 +25,7 @@ namespace MKM_Labs.Views
 
         private void CalculateBtnOnClick(object sender, RoutedEventArgs e)
         {
-            // ((HorizontalThrowModelingViewModel) DataContext).Calculate();
-            // (DataContext as HorizontalThrowModelingViewModel).?Calculate(); 
+            ((HorizontalThrowModelingViewModel) DataContext).Calculate();
         }
     }
 }
