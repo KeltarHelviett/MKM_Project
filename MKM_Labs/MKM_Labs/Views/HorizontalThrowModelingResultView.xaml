@@ -20,7 +20,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
-        <lvc:CartesianChart Series="{Binding Collection}" Margin="3,3,3,26" Zoom="Xy" Grid.ColumnSpan="5"/>
+        <lvc:CartesianChart Series="{Binding Collection}" Margin="3,3,3,26" Zoom="Xy" Grid.ColumnSpan="5" DisableAnimations="True"/>
         <RadioButton x:Name="IsXt" Content="x(t)" HorizontalAlignment="Left" Margin="3,3" 
                      IsChecked="{Binding IsXt, Mode=TwoWay}" VerticalAlignment="Top" Grid.Row="1" Height="15" Width="Auto"/>
         <RadioButton x:Name="IsYt" Content="y(t)" HorizontalAlignment="Left" Margin="3,3" 
