@@ -23,13 +23,12 @@ namespace MKM_Labs
             var vs = new List<Tuple<double, double>> { Capacity = ts.Count() };
             for (int i = 0; i < ts.Count; ++i)
             {
-                
-
                 var c = fy(ts[i]);
-                if (c.Item1 < 0)
+                if (c.Item2 < 0)
                 {
                     vs.Add(new Tuple<double, double>(0, 0));
-                    cs.Add(new Tuple<double, double>(0, cs[i - 1].Item2));
+                    cs.Add(new Tuple<double, double>(cs[i - 1].Item1, 0));
+                    continue;
                 }
                 cs.Add(c);
                 vs.Add(fv(ts[i]));
@@ -38,7 +37,7 @@ namespace MKM_Labs
         }
 
         private static Tuple<List<double>, List<double>, List<double>> EulerCromer(List<double> ts,
-            double y0, double v0, Func<double, double, double, double> f, bool isV)
+            double y0, double v0, Func<double, double, double, double> f)
         {
             var ys = new List<double> {Capacity = ts.Count()};
             ys.Add(y0);
@@ -50,7 +49,6 @@ namespace MKM_Labs
                 vs.Add(vs[i] + deltat * f(ys[i], vs[i], deltat));
 
                 var h = ys[i] + deltat * vs[i + 1];
-                if (h < 0 && isV) h = 0;
                 ys.Add(h);
             }
             return Tuple.Create(ts, ys, vs);
@@ -65,16 +63,28 @@ namespace MKM_Labs
             var ts = new List<double>();
             for (var i = 0; steporn * i <= endt; ++i)
                 ts.Add(steporn * i); 
-            var y = EulerCromer(ts, y0, v0y, fy, true);
-            var x = EulerCromer(ts, x0, v0x, fx, false);
+            var y = EulerCromer(ts, y0, v0y, fy);
+            var x = EulerCromer(ts, x0, v0x, fx);
 
             var cs = new List<Tuple<double, double>> { Capacity = ts.Count() };
             var vs = new List<Tuple<double, double>> { Capacity = ts.Count() };
 
             for (int i = 0; i < ts.Count; ++i)
             {
-                cs.Add(new Tuple<double, double>(x.Item2[i], y.Item3[i]));
-                vs.Add(new Tuple<double, double>(x.Item2[i], y.Item3[i]));
+                if (y.Item2[i] < 0)
+                {
+                    vs.Add(new Tuple<double, double>(0, 0));
+                    if (y.Item2[i - 1] > 0) { 
+                        cs.Add(new Tuple<double, double>(x.Item2[i], 0));
+                    }
+                    else
+                    {
+                        cs.Add(new Tuple<double, double>(cs[i - 1].Item1, 0));
+                    }
+                    continue;
+                }
+                cs.Add(new Tuple<double, double>(x.Item2[i], y.Item2[i]));
+                vs.Add(new Tuple<double, double>(x.Item3[i], y.Item3[i]));
             }
 
             return Tuple.Create(x.Item1, cs, vs);

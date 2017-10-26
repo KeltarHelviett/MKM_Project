@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using MKM_Labs.Views;
+using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace MKM_Labs.ViewModels
 {
@@ -300,7 +302,7 @@ namespace MKM_Labs.ViewModels
         #region PublicMethods
 
         public void Calculate()
-        {
+        { 
             var steporn = step;
             if (!IsStep) steporn = N;
 
