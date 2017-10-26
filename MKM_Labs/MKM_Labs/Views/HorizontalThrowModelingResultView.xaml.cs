@@ -41,5 +41,10 @@ namespace MKM_Labs.Views
         {
             ((HorizontalThrowModelingResultViewModel) DataContext).SaveToCsv();
         }
+
+        private void AnimateBtnOnClick(object sender, RoutedEventArgs e)
+        {
+            ((HorizontalThrowModelingResultViewModel)DataContext).Animate();
+        }
     }
 }

@@ -31,7 +31,9 @@
                      IsChecked="{Binding IsVyt, Mode=TwoWay}" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" Height="15" Width="Auto"/>
         <RadioButton x:Name="IsYx" Content="y(x)" HorizontalAlignment="Left" Margin="3,3" 
                      IsChecked="{Binding IsYx, Mode=TwoWay}" VerticalAlignment="Center" Grid.Column="4" Grid.Row="1" Height="15" Width="Auto"/>
-        <Button x:Name="SaveToCsvBtn" Content="Сохранить в CSV" HorizontalAlignment="Center" Margin="0"
-                VerticalAlignment="Bottom" Width="96" Grid.ColumnSpan="5" Height="20" Grid.Row="2" Click="SaveToCsvBtnClick"/>
+        <Button x:Name="SaveToCsvBtn" Content="Сохранить в CSV" HorizontalAlignment="Center" Margin="0,0,42,0"
+                VerticalAlignment="Bottom" Width="96" Grid.ColumnSpan="3" Height="20" Grid.Row="2" Click="SaveToCsvBtnClick"/>
+        <Button x:Name="AnimateBtn" Content="Анимировать" HorizontalAlignment="Center" Margin="0,0,10,0"
+                VerticalAlignment="Bottom" Width="96" Height="20" Grid.Row="2" Click="AnimateBtnOnClick" Grid.Column="4"/>
     </Grid>
 </Window>

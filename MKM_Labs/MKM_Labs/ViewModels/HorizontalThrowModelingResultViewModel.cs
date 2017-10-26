@@ -10,6 +10,7 @@ using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using Microsoft.Win32;
+using MKM_Labs.Views;
 
 namespace MKM_Labs.ViewModels
 {
@@ -246,6 +247,11 @@ namespace MKM_Labs.ViewModels
             File.WriteAllText(filename, content);
         }
 
+        public void Animate()
+        {
+            (new HorizontalThrowModelingAnimationView(Yx.Select(s => Tuple.Create(s.X, s.Y)).ToList())).Show();
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -254,5 +260,6 @@ namespace MKM_Labs.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }
