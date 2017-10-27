@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MKM_Labs.Views"
         mc:Ignorable="d"
-        Title="HorizontalThrowModelingAnimationView" Height="300" Width="300">
+        Name="Form"
+        Title="HorizontalThrowModelingAnimationView" Height="400" Width="600">
     <Grid>
-        <Canvas x:Name="ExperimentCanvas" HorizontalAlignment="Stretch" Height="NaN" Margin="0" VerticalAlignment="Stretch" Width="NaN"/>
+        <Canvas x:Name="ExperimentCanvas" HorizontalAlignment="Stretch" Height="400" Margin="0" VerticalAlignment="Stretch" Width="600"/>
 
     </Grid>
 </Window>

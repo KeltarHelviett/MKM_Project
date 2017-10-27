@@ -12,7 +12,7 @@ namespace MKM_Labs.ViewModels
     {
         #region PublicProperties
 
-        private double height = 100;
+        private double height = 0;
 
         public double Height
         {
@@ -26,7 +26,7 @@ namespace MKM_Labs.ViewModels
             }
         }
 
-        private double initialSpeed = 0;
+        private double initialSpeed = 30;
 
         public double InitialSpeed
         {
@@ -40,7 +40,7 @@ namespace MKM_Labs.ViewModels
             }
         }
 
-        private double x0 = 100;
+        private double x0 = 0;
 
         public double X0
         {
@@ -54,7 +54,7 @@ namespace MKM_Labs.ViewModels
             }
         }
 
-        private double angle = 0;
+        private double angle = 70;
 
         public double Angle
         {

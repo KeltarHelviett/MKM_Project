@@ -24,7 +24,9 @@ namespace MKM_Labs.Views
 
         public HorizontalThrowModelingAnimationView(List<Tuple<double, double>> xy)
         {
-
+            InitializeComponent();
+            Form.Width = 600;
+            Form.Height = 400;
             DataContext = new HorizontalThrowModelingAnimationViewModel(xy, ExperimentCanvas);
         }
     }
