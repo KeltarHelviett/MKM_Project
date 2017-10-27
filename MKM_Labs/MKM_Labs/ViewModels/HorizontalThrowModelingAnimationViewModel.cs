@@ -23,6 +23,7 @@ namespace MKM_Labs.ViewModels
         {
             
             this.ExperimentCanvas = ExperimentCanvas;
+            Xy = xy;
 
             var ellipse = new Ellipse();
             ellipse.Stroke = System.Windows.Media.Brushes.Black;
@@ -106,6 +107,8 @@ namespace MKM_Labs.ViewModels
         #endregion
 
         public Canvas ExperimentCanvas { set; get; }
+
+        public List<Tuple<double, double>> Xy;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -29,5 +29,10 @@ namespace MKM_Labs.Views
             Form.Height = 400;
             DataContext = new HorizontalThrowModelingAnimationViewModel(xy, ExperimentCanvas);
         }
+
+        private void RestartBtnClick(object sender, RoutedEventArgs e)
+        {
+            DataContext = new HorizontalThrowModelingAnimationViewModel(((HorizontalThrowModelingAnimationViewModel) DataContext).Xy, ExperimentCanvas);
+        }
     }
 }
