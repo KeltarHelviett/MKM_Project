@@ -21,6 +21,7 @@ namespace MKM_Labs.ViewModels
 
         public HorizontalThrowModelingAnimationViewModel(List<Tuple<double, double>> xy, Canvas ExperimentCanvas)
         {
+            
             this.ExperimentCanvas = ExperimentCanvas;
 
             var ellipse = new Ellipse();
@@ -35,6 +36,8 @@ namespace MKM_Labs.ViewModels
             rect.Width = 1000;
             rect.Height = 300;
 
+            Thickness margin = new Thickness(0, ExperimentCanvas.Height - 5, ExperimentCanvas.Width, ExperimentCanvas.Height - 5 + 300);
+            rect.Margin = margin;
 
             var minx = 100000000.0;
             var miny = 100000000.0;
@@ -49,7 +52,7 @@ namespace MKM_Labs.ViewModels
             }
 
             this.ExperimentCanvas.Children.Add(ellipse);
-            //this.ExperimentCanvas.Children.Add(rect);
+            this.ExperimentCanvas.Children.Add(rect);
 
             DoubleAnimationUsingKeyFrames AnimationX
                 = new DoubleAnimationUsingKeyFrames();

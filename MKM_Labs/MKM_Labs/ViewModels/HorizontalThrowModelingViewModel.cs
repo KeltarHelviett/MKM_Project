@@ -389,7 +389,7 @@ namespace MKM_Labs.ViewModels
             if (!IsStep) steporn = N;
 
             var alpha = Angle * Math.PI / 180;
-            var v0x = InitialSpeed * Math.Cos(alpha);
+            var v0x = InitialSpeed * Math.Cos(alpha) - EnvironmentSpeed;
             var v0y = InitialSpeed * Math.Sin(alpha);
 
             Func<double, double, double, double> Fy = delegate (double y, double v, double dt) {
