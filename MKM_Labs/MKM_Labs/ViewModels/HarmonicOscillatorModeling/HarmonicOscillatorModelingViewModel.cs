@@ -112,5 +112,27 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public void Calculate()
+        {
+            var steporn = step;
+            if (!IsStep) steporn = N;
+
+            Func<double, double, double, double> Fa = delegate (double x, double v, double dt)
+            {
+                double omega_2 = Rigidity / Mass;
+                double gamma = Friction;
+
+                return -omega_2 * x - gamma * v;       
+            };
+
+            Func<double, double, double> Fe = delegate (double x, double v)
+            {
+                return (Mass*v*v + Rigidity*x*x)/2;
+            };
+            
+            var Res = MKM_Labs.MathUtils.EulerCromer(0, 10, steporn, IsStep, 0, 5, Fa, Fe);
+            (new MKM_Labs.Views.HarmonicOscillatorModeling.HarmonicOscillatorModelingResultView(Res)).Show();
+        }
     }
 }
