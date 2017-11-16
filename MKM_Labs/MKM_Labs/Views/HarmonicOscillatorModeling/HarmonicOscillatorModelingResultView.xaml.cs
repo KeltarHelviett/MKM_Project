@@ -14,14 +14,22 @@ using System.Windows.Shapes;
 
 namespace MKM_Labs.Views.HarmonicOscillatorModeling
 {
-    /// <summary>
-    /// Interaction logic for HarmonicOscillatorModelingResultView.xaml
-    /// </summary>
     public partial class HarmonicOscillatorModelingResultView : Window
     {
         public HarmonicOscillatorModelingResultView()
         {
             InitializeComponent();
+        }
+
+        public HarmonicOscillatorModelingResultView(Tuple<List<double>, List<double>, List<double>, List<double>> numeric,
+            Tuple<List<double>, List<double>, List<double>, List<double>> analytical) : this()
+        {
+            DataContext = new HarmonicOscillatorModelingResultView(numeric, analytical);
+        }
+
+        public HarmonicOscillatorModelingResultView(Tuple<List<double>, List<double>, List<double>, List<double>> numeric) : this()
+        {
+            DataContext = new HarmonicOscillatorModelingResultView(numeric);
         }
     }
 }

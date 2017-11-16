@@ -42,6 +42,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
             {
                 Values = AnalyticalXt
             });
+            HasAnalytical = true;
         }
 
         #endregion
