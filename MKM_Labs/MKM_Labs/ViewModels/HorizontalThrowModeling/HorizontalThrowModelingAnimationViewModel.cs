@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Windows.Media;
 using System.Drawing;
+using Rectangle = System.Windows.Shapes.Rectangle;
 
 
 namespace MKM_Labs.ViewModels
@@ -25,17 +26,21 @@ namespace MKM_Labs.ViewModels
             this.ExperimentCanvas = ExperimentCanvas;
             Xy = xy;
 
-            var ellipse = new Ellipse();
-            ellipse.Stroke = System.Windows.Media.Brushes.Black;
-            ellipse.Fill = System.Windows.Media.Brushes.DarkBlue;
-            ellipse.Width = 15;
-            ellipse.Height = 15;
+            var ellipse = new Ellipse
+            {
+                Stroke = System.Windows.Media.Brushes.Black,
+                Fill = System.Windows.Media.Brushes.DarkBlue,
+                Width = 15,
+                Height = 15
+            };
 
-            var rect = new Rectangle();
-            rect.Stroke = System.Windows.Media.Brushes.Black;
-            rect.Fill = System.Windows.Media.Brushes.Green;
-            rect.Width = 1000;
-            rect.Height = 300;
+            var rect = new Rectangle
+            {
+                Stroke = System.Windows.Media.Brushes.Black,
+                Fill = System.Windows.Media.Brushes.Green,
+                Width = 1000,
+                Height = 300
+            };
 
             Thickness margin = new Thickness(0, ExperimentCanvas.Height - 5, ExperimentCanvas.Width, ExperimentCanvas.Height - 5 + 300);
             rect.Margin = margin;
@@ -55,17 +60,15 @@ namespace MKM_Labs.ViewModels
             this.ExperimentCanvas.Children.Add(ellipse);
             this.ExperimentCanvas.Children.Add(rect);
 
-            DoubleAnimationUsingKeyFrames AnimationX
-                = new DoubleAnimationUsingKeyFrames();
+            var AnimationX = new DoubleAnimationUsingKeyFrames();
 
-            DoubleAnimationUsingKeyFrames AnimationY
-                = new DoubleAnimationUsingKeyFrames();
+            var AnimationY = new DoubleAnimationUsingKeyFrames();
 
             AnimationX.Duration = TimeSpan.FromSeconds(5);
             AnimationY.Duration = TimeSpan.FromSeconds(5);
 
             double t = 0;
-            double dt = 5.0 / xy.Count;
+            var dt = 5.0 / xy.Count;
 
             var lx = maxx - minx;
             var ly = maxy - miny;

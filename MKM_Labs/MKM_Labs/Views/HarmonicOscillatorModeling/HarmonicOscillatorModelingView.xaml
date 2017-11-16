@@ -17,23 +17,31 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="174*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="102*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="TitleLabel" Content="Моделирование гармонического осциллятора" HorizontalAlignment="Center" Margin="12,2,12,1"
+        <Label x:Name="TitleLabel" Content="Моделирование гармонического осциллятора" HorizontalAlignment="Center" Margin="95,2,95,1"
                VerticalAlignment="Center" Height="26" Width="268" Grid.ColumnSpan="4"/>
         <Label x:Name="FrictionLabel" Content="Коэф. Трения" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Row="1" Width="82" Height="26" Margin="0,0,0,0"/>
-        <TextBox x:Name="FrictionTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Friction, Mode=TwoWay}" 
-                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1"/>
+               Grid.Row="1" Width="82" Height="26" Margin="16,0"/>
+        <TextBox x:Name="FrictionTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding Friction, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1" Margin="0,1,1,1"/>
         <Label x:Name="RigiditynLabel" Content="Коэф. Жёсткости" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Row="1" Grid.Column="2" Width="Auto" Height="26" Margin="0,0,0,0"/>
-        <TextBox x:Name="RigidityTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Rigidity, Mode=TwoWay}" 
-                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3"/>
+               Grid.Row="1" Grid.Column="2" Width="Auto" Height="26" Margin="1,0"/>
+        <TextBox x:Name="RigidityTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding Rigidity, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3" Margin="1,1,0,1"/>
         <Label x:Name="MassLabel" Content="Масса" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Row="2" Grid.Column="0"/>
-        <TextBox x:Name="MassTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Mass, Mode=TwoWay}"
-                 Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="120"/>
-        
+               Grid.Row="2" Grid.Column="0" Margin="35,0"/>
+        <TextBox x:Name="MassTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding Mass, Mode=TwoWay}"
+                 Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="120" Margin="0,1,1,1"/>
+        <RadioButton x:Name="NLabel" Content="Кол-во отсчетов" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"
+                     VerticalAlignment="Center" GroupName="CalculationSchemeParams" IsChecked="{Binding IsN, Mode=TwoWay}"/>
+        <TextBox x:Name="NTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,0,0,0" Grid.Row="3"
+                 TextWrapping="Wrap" Text="{Binding N, Mode=TwoWay}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding IsN, Mode=TwoWay}"/>
+        <RadioButton x:Name="StepLabel" Content="Шаг" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"
+                     VerticalAlignment="Center" Grid.Column="2" GroupName="CalculationSchemeParams" IsChecked="{Binding IsStep, Mode=TwoWay}"/>
+        <TextBox x:Name="StepTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Margin="0,0,0,0" Grid.Row="3" Grid.Column="3" 
+                 Text="{Binding Step, Mode=TwoWay}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding IsStep, Mode=TwoWay}"/>
 
 
 
