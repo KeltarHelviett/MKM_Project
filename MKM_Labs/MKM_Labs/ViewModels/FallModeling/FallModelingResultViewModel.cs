@@ -74,7 +74,7 @@ namespace MKM_Labs.ViewModels
 
         #endregion
 
-            #region PublicProperties
+        #region PublicProperties
 
         public SeriesCollection Collection { get; set; } = new SeriesCollection();
 

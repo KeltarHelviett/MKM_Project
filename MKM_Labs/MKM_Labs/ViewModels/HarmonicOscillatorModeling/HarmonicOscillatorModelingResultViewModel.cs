@@ -13,6 +13,39 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
 {
     class HarmonicOscillatorModelingResultViewModel: INotifyPropertyChanged
     {
+        #region Ctor
+
+        public HarmonicOscillatorModelingResultViewModel(Tuple<List<double>, List<double>, List<double>, List<double>> numeric)
+        {
+            for (int i = 0; i < numeric.Item1.Count; ++i)
+            {
+                Xt.Add(new ObservablePoint(numeric.Item1[i], numeric.Item2[i]));
+                Vt.Add(new ObservablePoint(numeric.Item1[i], numeric.Item3[i]));
+                E.Add(new ObservablePoint(numeric.Item1[i], numeric.Item4[i]));
+            }
+            Collection.Add(new LineSeries()
+            {
+                Values = Xt
+            });
+        }
+
+        public HarmonicOscillatorModelingResultViewModel(Tuple<List<double>, List<double>, List<double>, List<double>> numeric,
+            Tuple<List<double>, List<double>, List<double>, List<double>> analytical): this(numeric)
+        {
+            for (int i = 0; i < numeric.Item1.Count; ++i)
+            {
+                AnalyticalXt.Add(new ObservablePoint(numeric.Item1[i], numeric.Item2[i]));
+                AnalyticalVt.Add(new ObservablePoint(numeric.Item1[i], numeric.Item3[i]));
+                AnalyticalE.Add(new ObservablePoint(numeric.Item1[i], numeric.Item4[i]));
+            }
+            Collection.Add(new LineSeries()
+            {
+                Values = AnalyticalXt
+            });
+        }
+
+        #endregion
+
         #region PrivateProperties
 
         private bool HasAnalytical { set; get; } = false;
