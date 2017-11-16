@@ -42,8 +42,10 @@
                      VerticalAlignment="Center" Grid.Column="2" GroupName="CalculationSchemeParams" IsChecked="{Binding IsStep, Mode=TwoWay}"/>
         <TextBox x:Name="StepTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Margin="0,0,0,0" Grid.Row="3" Grid.Column="3" 
                  Text="{Binding Step, Mode=TwoWay}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding IsStep, Mode=TwoWay}"/>
-
-
-
+        <Label x:Name="EndTimeLabel" Content="Кон. Время" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="2" Grid.Column="2"/>
+        <TextBox x:Name="EndTimeTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"
+                 Text="{Binding EndTime, Mode=TwoWay}" VerticalAlignment="Center" Width="120" Grid.Row="2" Grid.Column="3"/>
+        <Button x:Name="CalculateBtn" Content="Рассчитать" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,0" Grid.Row="4"/>
     </Grid>
 </Window>
