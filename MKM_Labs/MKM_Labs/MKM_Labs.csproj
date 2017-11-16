@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\HarmonicOscillatorModeling\HarmonicOscillatorModelingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HorizontalThrowModeling\HorizontalThrowModelingAnimationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +102,7 @@
     <Compile Include="MathUtils.cs" />
     <Compile Include="ViewModels\FallModeling\FallModelingResultViewModel.cs" />
     <Compile Include="ViewModels\FallModeling\FallModelingViewModel.cs" />
+    <Compile Include="ViewModels\HarmonicOscillatorModeling\HarmonicOscillatorModelingViewModel.cs" />
     <Compile Include="ViewModels\HorizontalThrowModeling\HorizontalThrowModelingAnimationViewModel.cs" />
     <Compile Include="ViewModels\HorizontalThrowModeling\HorizontalThrowModelingResultViewModel.cs" />
     <Compile Include="ViewModels\HorizontalThrowModeling\HorizontalThrowModelingViewModel.cs" />
@@ -106,6 +111,9 @@
     </Compile>
     <Compile Include="Views\FallModeling\FallModelingView.xaml.cs">
       <DependentUpon>FallModelingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HarmonicOscillatorModeling\HarmonicOscillatorModelingView.xaml.cs">
+      <DependentUpon>HarmonicOscillatorModelingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HorizontalThrowModeling\HorizontalThrowModelingAnimationView.xaml.cs">
       <DependentUpon>HorizontalThrowModelingAnimationView.xaml</DependentUpon>
