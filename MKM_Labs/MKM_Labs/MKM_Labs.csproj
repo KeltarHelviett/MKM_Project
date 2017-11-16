@@ -67,23 +67,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\FallModelingResultView.xaml">
+    <Page Include="Views\FallModeling\FallModelingResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FallModelingView.xaml">
+    <Page Include="Views\FallModeling\FallModelingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HorizontalThrowModelingAnimationView.xaml">
+    <Page Include="Views\HorizontalThrowModeling\HorizontalThrowModelingAnimationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HorizontalThrowModelingResultView.xaml">
+    <Page Include="Views\HorizontalThrowModeling\HorizontalThrowModelingResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HorizontalThrowModelingView.xaml">
+    <Page Include="Views\HorizontalThrowModeling\HorizontalThrowModelingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,24 +96,24 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MathUtils.cs" />
-    <Compile Include="ViewModels\FallModelingResultViewModel.cs" />
-    <Compile Include="ViewModels\FallModelingViewModel.cs" />
-    <Compile Include="ViewModels\HorizontalThrowModelingAnimationViewModel.cs" />
-    <Compile Include="ViewModels\HorizontalThrowModelingResultViewModel.cs" />
-    <Compile Include="ViewModels\HorizontalThrowModelingViewModel.cs" />
-    <Compile Include="Views\FallModelingResultView.xaml.cs">
+    <Compile Include="ViewModels\FallModeling\FallModelingResultViewModel.cs" />
+    <Compile Include="ViewModels\FallModeling\FallModelingViewModel.cs" />
+    <Compile Include="ViewModels\HorizontalThrowModeling\HorizontalThrowModelingAnimationViewModel.cs" />
+    <Compile Include="ViewModels\HorizontalThrowModeling\HorizontalThrowModelingResultViewModel.cs" />
+    <Compile Include="ViewModels\HorizontalThrowModeling\HorizontalThrowModelingViewModel.cs" />
+    <Compile Include="Views\FallModeling\FallModelingResultView.xaml.cs">
       <DependentUpon>FallModelingResultView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FallModelingView.xaml.cs">
+    <Compile Include="Views\FallModeling\FallModelingView.xaml.cs">
       <DependentUpon>FallModelingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HorizontalThrowModelingAnimationView.xaml.cs">
+    <Compile Include="Views\HorizontalThrowModeling\HorizontalThrowModelingAnimationView.xaml.cs">
       <DependentUpon>HorizontalThrowModelingAnimationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HorizontalThrowModelingResultView.xaml.cs">
+    <Compile Include="Views\HorizontalThrowModeling\HorizontalThrowModelingResultView.xaml.cs">
       <DependentUpon>HorizontalThrowModelingResultView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HorizontalThrowModelingView.xaml.cs">
+    <Compile Include="Views\HorizontalThrowModeling\HorizontalThrowModelingView.xaml.cs">
       <DependentUpon>HorizontalThrowModelingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
