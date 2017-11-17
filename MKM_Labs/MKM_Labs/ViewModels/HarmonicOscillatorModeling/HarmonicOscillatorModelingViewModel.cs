@@ -12,7 +12,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
     {
         #region PublicProperties
 
-        private double friction;
+        private double friction = 0.2;
 
         public double Friction
         {
@@ -24,7 +24,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
             }
         }
 
-        private double rigidity;
+        private double rigidity = 1;
 
         public double Rigidity
         {
@@ -36,7 +36,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
             }
         }
 
-        private double mass;
+        private double mass = 1;
 
         public double Mass
         {
@@ -104,6 +104,20 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
             }
         }
 
+        private double endTime = 10;
+
+        public double EndTime
+        {
+            get { return endTime; }
+            set
+            {
+                if (endTime == value)
+                    return;
+                endTime = value;
+                OnPropertyChanged(nameof(endTime));
+            }
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -131,7 +145,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                 return (Mass*v*v + Rigidity*x*x)/2;
             };
             
-            var Res = MKM_Labs.MathUtils.EulerCromer(0, 10, steporn, IsStep, 0, 5, Fa, Fe);
+            var Res = MKM_Labs.MathUtils.EulerCromer(0, EndTime, steporn, IsStep, 0, 5, Fa, Fe);
             (new MKM_Labs.Views.HarmonicOscillatorModeling.HarmonicOscillatorModelingResultView(Res)).Show();
         }
     }

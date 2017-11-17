@@ -84,7 +84,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
 
         private bool isVt = false;
 
-        public bool IsVxt
+        public bool IsVt
         {
             get { return isVt; }
             set
@@ -105,7 +105,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                             Values = AnalyticalVt
                         });
                 }
-                OnPropertyChanged(nameof(IsVxt));
+                OnPropertyChanged(nameof(IsVt));
             }
         }
 
