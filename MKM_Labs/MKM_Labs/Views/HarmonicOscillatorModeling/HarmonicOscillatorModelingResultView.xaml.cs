@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MKM_Labs.ViewModels.HarmonicOscillatorModeling;
 
 namespace MKM_Labs.Views.HarmonicOscillatorModeling
 {
@@ -29,7 +30,7 @@ namespace MKM_Labs.Views.HarmonicOscillatorModeling
 
         public HarmonicOscillatorModelingResultView(Tuple<List<double>, List<double>, List<double>, List<double>> numeric) : this()
         {
-            DataContext = new HarmonicOscillatorModelingResultView(numeric);
+            DataContext = new HarmonicOscillatorModelingResultViewModel(numeric);
         }
     }
 }
