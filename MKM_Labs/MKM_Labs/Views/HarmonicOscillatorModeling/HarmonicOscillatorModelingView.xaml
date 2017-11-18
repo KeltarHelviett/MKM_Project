@@ -46,6 +46,7 @@
                Grid.Row="2" Grid.Column="2"/>
         <TextBox x:Name="EndTimeTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"
                  Text="{Binding EndTime, Mode=TwoWay}" VerticalAlignment="Center" Width="120" Grid.Row="2" Grid.Column="3"/>
-        <Button x:Name="CalculateBtn" Content="Рассчитать" Click="CalculateBtnClick" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.ColumnSpan="2" Margin="81,24.8,68.8,0" Grid.Row="4" RenderTransformOrigin="0.52,0.104"/>
+        <Button x:Name="CalculateBtn" Content="Рассчитать" Click="CalculateBtnClick" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Grid.Column="1" Margin="25,23.8,22.4,0" Grid.Row="4" RenderTransformOrigin="0, 0"/>
+        <Button x:Name="AnimationBtn" Content="Модель" Click="AnimationBtnClick" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Grid.Column="3" Margin="25.8,23.8,20.8,0" Grid.Row="4" RenderTransformOrigin="0, 0"/>
     </Grid>
 </Window>

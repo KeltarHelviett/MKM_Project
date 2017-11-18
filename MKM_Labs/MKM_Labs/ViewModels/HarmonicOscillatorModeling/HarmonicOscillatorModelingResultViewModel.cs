@@ -22,6 +22,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                 Xt.Add(new ObservablePoint(numeric.Item1[i], numeric.Item2[i]));
                 Vt.Add(new ObservablePoint(numeric.Item1[i], numeric.Item3[i]));
                 E.Add(new ObservablePoint(numeric.Item1[i], numeric.Item4[i]));
+                Vx.Add(new ObservablePoint(numeric.Item2[i], numeric.Item3[i]));
             }
             Collection.Add(new LineSeries()
             {
@@ -97,7 +98,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                     Collection.Clear();
                     Collection.Add(new LineSeries()
                     {
-                        Values = Vt
+                        Values = Vx
                     });
                     if (HasAnalytical)
                         Collection.Add(new LineSeries()
@@ -141,6 +142,8 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
         public ChartValues<ObservablePoint> Xt { get; set; } = new ChartValues<ObservablePoint>();
 
         public ChartValues<ObservablePoint> Vt { get; set; } = new ChartValues<ObservablePoint>();
+
+        public ChartValues<ObservablePoint> Vx { get; set; } = new ChartValues<ObservablePoint>();
 
         public ChartValues<ObservablePoint> E { get; set; } = new ChartValues<ObservablePoint>();
 

@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MKM_Labs.Views.HarmonicOscillatorModeling"
         mc:Ignorable="d"
-        Title="HarmonicOscillatorModelingAnimationView" Height="300" Width="300">
+        Name="Form"
+        Closing="Form_Closed"
+        MouseLeftButtonDown="Form_MouseLeftButtonDown"
+        Title="HarmonicOscillatorModelingAnimationView" Height="700" Width="900" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
     <Grid>
-        <Canvas x:Name="ExperimentCanvas" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+        <Canvas x:Name="ExperimentCanvas" HorizontalAlignment="Center" Margin="0,0,-0.4,0.4" VerticalAlignment="Center" Height="700" Width="900"/>
+
     </Grid>
 </Window>

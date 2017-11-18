@@ -27,5 +27,10 @@ namespace MKM_Labs.Views.HarmonicOscillatorModeling
         {
             (DataContext as HarmonicOscillatorModelingViewModel).Calculate();
         }
+
+        private void AnimationBtnClick(object sender, RoutedEventArgs e)
+        {
+            (DataContext as HarmonicOscillatorModelingViewModel).Animate();
+        }
     }
 }

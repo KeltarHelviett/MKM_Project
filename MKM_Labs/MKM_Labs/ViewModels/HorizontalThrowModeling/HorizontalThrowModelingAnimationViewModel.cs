@@ -22,7 +22,6 @@ namespace MKM_Labs.ViewModels
 
         public HorizontalThrowModelingAnimationViewModel(List<Tuple<double, double>> xy, Canvas ExperimentCanvas)
         {
-            
             this.ExperimentCanvas = ExperimentCanvas;
             Xy = xy;
 

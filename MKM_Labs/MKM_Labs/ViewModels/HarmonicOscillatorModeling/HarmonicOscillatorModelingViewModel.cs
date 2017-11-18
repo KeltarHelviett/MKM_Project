@@ -132,12 +132,17 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
             var steporn = step;
             if (!IsStep) steporn = N;
 
+            var A = 4.0;
+            var omega = 1.0;
+            var t = 0.0;
+
             Func<double, double, double, double> Fa = delegate (double x, double v, double dt)
             {
                 double omega_2 = Rigidity / Mass;
                 double gamma = Friction;
+                t += dt;
 
-                return -omega_2 * x - gamma * v;       
+                return -omega_2 * x - gamma * v + A * Math.Cos(omega * t);
             };
 
             Func<double, double, double> Fe = delegate (double x, double v)
@@ -145,8 +150,26 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                 return (Mass*v*v + Rigidity*x*x)/2;
             };
             
-            var Res = MKM_Labs.MathUtils.EulerCromer(0, EndTime, steporn, IsStep, 0, 5, Fa, Fe);
+            var Res = MKM_Labs.MathUtils.EulerCromer(0, EndTime, steporn, IsStep, 0, 50, Fa, Fe);
             (new MKM_Labs.Views.HarmonicOscillatorModeling.HarmonicOscillatorModelingResultView(Res)).Show();
+        }
+
+        public void Animate()
+        {
+            var A = 4.0;
+            var omega = 1.0;
+            var t = 0.0;
+
+            Func<double, double, double, double> Fa = delegate (double x, double v, double dt)
+            {
+                double omega_2 = Rigidity / Mass;
+                double gamma = Friction;
+                t += dt;
+
+                return -omega_2 * x - gamma * v + A * Math.Cos(omega * t);
+            };
+
+            (new MKM_Labs.Views.HarmonicOscillatorModeling.HarmonicOscillatorModelingAnimationView(0, 50, Fa)).Show();
         }
     }
 }
