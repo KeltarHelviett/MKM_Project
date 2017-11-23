@@ -126,7 +126,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                     Collection.Clear();
                     Collection.Add(new LineSeries()
                     {
-                        Fill = System.Windows.Media.Brushes.White,
+                        Fill = System.Windows.Media.Brushes.Transparent,
                         Values = Vx
                     });
                     if (HasAnalytical)
