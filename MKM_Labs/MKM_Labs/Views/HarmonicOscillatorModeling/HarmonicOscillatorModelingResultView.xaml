@@ -18,14 +18,15 @@
             <RowDefinition Height="257*"/>
             <RowDefinition Height="33*"/>
         </Grid.RowDefinitions>
-        <lvc:CartesianChart Hoverable="False" DataTooltip="{x:Null}" Series="{Binding Collection}" Margin="3,3,3,10" Zoom="Xy" DisableAnimations="True" Grid.ColumnSpan="4"/>
+        <lvc:CartesianChart Hoverable="False" DataTooltip="{x:Null}" Series="{Binding Collection}"
+                            Margin="3,3,3,10" Zoom="Xy" DisableAnimations="True" Grid.ColumnSpan="4" />
         <RadioButton x:Name="XtRB" Content="x(t)" HorizontalAlignment="Center" Margin="0,12,0,11" Grid.Row="1" VerticalAlignment="Center"
                      Height="12" Width="Auto" IsChecked="{Binding IsXt, Mode=TwoWay}"/>
         <RadioButton x:Name="VtRB" Content="v(t)" HorizontalAlignment="Center" Margin="0,12,0,11" Grid.Row="1" VerticalAlignment="Center"
-                     Height="12" Width="Auto" Grid.Column="1" IsChecked="{Binding IsVx, Mode=TwoWay}"/>
+                     Height="12" Width="Auto" Grid.Column="1" IsChecked="{Binding IsVt, Mode=TwoWay}"/>
         <RadioButton x:Name="ERB" Content="E" HorizontalAlignment="Left" Margin="0,12,0,11" Grid.Row="1" VerticalAlignment="Center"
                      Height="12" Width="Auto" Grid.Column="2" IsChecked="{Binding IsE, Mode=TwoWay}"/>
         <RadioButton x:Name="PhasePortraitRB" Content="Фазовый Портрет" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center"
-                     Height="12" Width="Auto" Grid.Column="3" IsChecked="{Binding IsVt, Mode=TwoWay}"/>
+                     Height="12" Width="Auto" Grid.Column="3" IsChecked="{Binding IsVx, Mode=TwoWay}"/>
     </Grid>
 </Window>

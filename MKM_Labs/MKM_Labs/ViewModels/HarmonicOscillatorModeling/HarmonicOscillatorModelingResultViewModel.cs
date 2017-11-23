@@ -98,6 +98,35 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                     Collection.Clear();
                     Collection.Add(new LineSeries()
                     {
+                        Fill = null,
+                        Values = Vt
+                    });
+                    if (HasAnalytical)
+                        Collection.Add(new LineSeries()
+                        {
+                            Values = AnalyticalVt
+                        });
+                }
+                OnPropertyChanged(nameof(IsVt));
+            }
+        }
+
+        private bool isVx = false;
+
+        public bool IsVx
+        {
+            get { return isVx; }
+            set
+            {
+                if (value == isVx)
+                    return;
+                isVx = value;
+                if (isVx)
+                {
+                    Collection.Clear();
+                    Collection.Add(new LineSeries()
+                    {
+                        Fill = System.Windows.Media.Brushes.White,
                         Values = Vx
                     });
                     if (HasAnalytical)

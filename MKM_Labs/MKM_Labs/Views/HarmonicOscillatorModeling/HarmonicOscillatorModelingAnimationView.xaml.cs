@@ -20,9 +20,8 @@ namespace MKM_Labs.Views.HarmonicOscillatorModeling
     {
         public void Invalidate(object o, EventArgs e)
         {
-            var AnimationViewModel = DataContext as HarmonicOscillatorModelingAnimationViewModel;
-            AnimationViewModel.CalculateNextValue(0.02);
-            AnimationViewModel.RedrawModel();
+            VM.CalculateNextValue(0.02);
+            VM.RedrawModel();
         }
 
         public HarmonicOscillatorModelingAnimationView()
@@ -34,7 +33,9 @@ namespace MKM_Labs.Views.HarmonicOscillatorModeling
         {
             InitializeComponent();
 
-            DataContext = new HarmonicOscillatorModelingAnimationViewModel(x0, v0, a, ExperimentCanvas);
+            DataContext =  new HarmonicOscillatorModelingAnimationViewModel(x0, v0, a, ExperimentCanvas);
+
+            VM = DataContext as HarmonicOscillatorModelingAnimationViewModel;
 
             timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
             timer.Tick += Invalidate;
@@ -42,6 +43,8 @@ namespace MKM_Labs.Views.HarmonicOscillatorModeling
         }
 
         readonly System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+
+        private HarmonicOscillatorModelingAnimationViewModel VM; // Perfomance reasons
 
         private void Form_Closed(object sender, EventArgs e)
         {
