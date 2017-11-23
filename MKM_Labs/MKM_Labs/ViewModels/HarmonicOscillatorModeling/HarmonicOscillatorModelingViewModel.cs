@@ -12,6 +12,38 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
     {
         #region PublicProperties
 
+        private double omega = 1;
+
+        public double Omega
+        {
+            get { return omega; }
+            set
+            {
+                omega = value;
+                rigidity = omega * mass;
+                gerc = omega / (2 * Math.PI);
+                OnPropertyChanged(nameof(Gerc));
+                OnPropertyChanged(nameof(Rigidity));
+                OnPropertyChanged(nameof(Omega));
+            }
+        }
+
+        private double gerc = 1 / (2 * Math.PI);
+
+        public double Gerc
+        {
+            get { return gerc; }
+            set
+            {
+                gerc = value;
+                omega = gerc * 2 * Math.PI;
+                rigidity = omega * mass;
+                OnPropertyChanged(nameof(Gerc));
+                OnPropertyChanged(nameof(Rigidity));
+                OnPropertyChanged(nameof(Omega));
+            }
+        }
+
         private double friction = 0.2;
 
         public double Friction
@@ -32,7 +64,11 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
             set
             {
                 rigidity = value;
+                omega = rigidity / mass;
+                gerc = omega / (2 * Math.PI);
                 OnPropertyChanged(nameof(Rigidity));
+                OnPropertyChanged(nameof(Omega));
+                OnPropertyChanged(nameof(Gerc));
             }
         }
 
@@ -44,7 +80,11 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
             set
             {
                 mass = value;
+                Omega = rigidity / mass;
+                gerc = omega / (2 * Math.PI);
                 OnPropertyChanged(nameof(mass));
+                OnPropertyChanged(nameof(Omega));
+                OnPropertyChanged(nameof(Gerc));
             }
         }
 

@@ -18,35 +18,42 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="102*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="72*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="TitleLabel" Content="Моделирование гармонического осциллятора" HorizontalAlignment="Center" Margin="95,2,95,1"
+        <Label x:Name="TitleLabel" Content="Моделирование гармонического осциллятора" HorizontalAlignment="Center" Margin="100,2,99,1"
                VerticalAlignment="Center" Height="26" Width="268" Grid.ColumnSpan="4"/>
         <Label x:Name="FrictionLabel" Content="Коэф. Трения" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Row="1" Width="82" Height="26" Margin="16,0"/>
+               Grid.Row="1" Width="82" Height="26" Margin="16,0,17,0"/>
         <TextBox x:Name="FrictionTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding Friction, Mode=TwoWay}" 
-                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1" Margin="0,1,1,1"/>
+                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1" Margin="1,1,3,1"/>
         <Label x:Name="RigiditynLabel" Content="Коэф. Жёсткости" HorizontalAlignment="Center" VerticalAlignment="Center"
                Grid.Row="1" Grid.Column="2" Width="Auto" Height="26" Margin="1,0"/>
         <TextBox x:Name="RigidityTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding Rigidity, Mode=TwoWay}" 
-                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3" Margin="1,1,0,1"/>
+                 VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3" Margin="3,1,1,1"/>
         <Label x:Name="MassLabel" Content="Масса" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Row="2" Grid.Column="0" Margin="35,0"/>
+               Grid.Row="2" Grid.Column="0" Margin="36,0,35,0"/>
         <TextBox x:Name="MassTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="{Binding Mass, Mode=TwoWay}"
-                 Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="120" Margin="0,1,1,1"/>
-        <RadioButton x:Name="NLabel" Content="Кол-во отсчетов" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"
+                 Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="120" Margin="1,1,3,1"/>
+        <RadioButton x:Name="NLabel" Content="Кол-во отсчетов" HorizontalAlignment="Center" Margin="2,4,3,4" Grid.Row="3"
                      VerticalAlignment="Center" GroupName="CalculationSchemeParams" IsChecked="{Binding IsN, Mode=TwoWay}"/>
-        <TextBox x:Name="NTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,0,0,0" Grid.Row="3"
+        <TextBox x:Name="NTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="2,0" Grid.Row="3"
                  TextWrapping="Wrap" Text="{Binding N, Mode=TwoWay}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding IsN, Mode=TwoWay}"/>
-        <RadioButton x:Name="StepLabel" Content="Шаг" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3"
+        <RadioButton x:Name="StepLabel" Content="Шаг" HorizontalAlignment="Center" Margin="31,4" Grid.Row="3"
                      VerticalAlignment="Center" Grid.Column="2" GroupName="CalculationSchemeParams" IsChecked="{Binding IsStep, Mode=TwoWay}"/>
-        <TextBox x:Name="StepTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Margin="0,0,0,0" Grid.Row="3" Grid.Column="3" 
+        <TextBox x:Name="StepTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Margin="2,0" Grid.Row="3" Grid.Column="3" 
                  Text="{Binding Step, Mode=TwoWay}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding IsStep, Mode=TwoWay}"/>
         <Label x:Name="EndTimeLabel" Content="Кон. Время" HorizontalAlignment="Center" VerticalAlignment="Center"
-               Grid.Row="2" Grid.Column="2"/>
-        <TextBox x:Name="EndTimeTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"
-                 Text="{Binding EndTime, Mode=TwoWay}" VerticalAlignment="Center" Width="120" Grid.Row="2" Grid.Column="3"/>
-        <Button x:Name="CalculateBtn" Content="Рассчитать" Click="CalculateBtnClick" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Grid.Column="1" Margin="25,23.8,22.4,0" Grid.Row="4" RenderTransformOrigin="0, 0"/>
-        <Button x:Name="AnimationBtn" Content="Модель" Click="AnimationBtnClick" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Grid.Column="3" Margin="25.8,23.8,20.8,0" Grid.Row="4" RenderTransformOrigin="0, 0"/>
+               Grid.Row="2" Grid.Column="2" Margin="17,0"/>
+        <TextBox x:Name="EndTimeTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap"
+                 Text="{Binding EndTime, Mode=TwoWay}" VerticalAlignment="Center" Width="120" Grid.Row="2" Grid.Column="3" Margin="2,1"/>
+        <Button x:Name="CalculateBtn" Content="Рассчитать" Click="CalculateBtnClick" HorizontalAlignment="Center" VerticalAlignment="Top" Width="74" Grid.Column="1" Margin="27,6.333,23,0" Grid.Row="5" RenderTransformOrigin="0, 0"/>
+        <Button x:Name="AnimationBtn" Content="Модель" Click="AnimationBtnClick" HorizontalAlignment="Center" VerticalAlignment="Top" Width="74" Grid.Column="3" Margin="31,11.333,19,0" Grid.Row="5" RenderTransformOrigin="0, 0"/>
+        <Label x:Name="OmegaLabel" Content="ω" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox x:Name="OmegaTextBox" HorizontalAlignment="Center" Height="23" Grid.Row="4" Grid.Column="1"
+                 TextWrapping="Wrap" Text="{Binding Omega, Mode=TwoWay}" VerticalAlignment="Center" Width="120"/>
+        <Label x:Name="GercLabel" Content="Gerc" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2"/>
+        <TextBox x:Name="GercTextBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="{Binding Gerc, Mode=TwoWay}"
+                 VerticalAlignment="Center" Width="120" Grid.Column="3" Grid.Row="4"/>
     </Grid>
 </Window>
