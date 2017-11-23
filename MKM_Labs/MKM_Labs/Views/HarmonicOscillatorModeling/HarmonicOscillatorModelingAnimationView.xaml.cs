@@ -16,25 +16,13 @@ using MKM_Labs.ViewModels.HarmonicOscillatorModeling;
 
 namespace MKM_Labs.Views.HarmonicOscillatorModeling
 {
-    /// <summary>
-    /// Interaction logic for HarmonicOscillatorModelingAnimationView.xaml
-    /// </summary>
     public partial class HarmonicOscillatorModelingAnimationView : Window
     {
-        public void SetTimer()
+        public void Invalidate(object o, EventArgs e)
         {
-            timer = new System.Timers.Timer(20);
             var AnimationViewModel = DataContext as HarmonicOscillatorModelingAnimationViewModel;
-
-            timer.Elapsed += (sender, e) =>
-            {
-                AnimationViewModel.CalculateNextValue(0.02);
-                AnimationViewModel.RedrawModel();
-            };
-            timer.AutoReset = true;
-            timer.Enabled = true;
-
-            timer.Start();
+            AnimationViewModel.CalculateNextValue(0.02);
+            AnimationViewModel.RedrawModel();
         }
 
         public HarmonicOscillatorModelingAnimationView()
@@ -48,10 +36,12 @@ namespace MKM_Labs.Views.HarmonicOscillatorModeling
 
             DataContext = new HarmonicOscillatorModelingAnimationViewModel(x0, v0, a, ExperimentCanvas);
 
-            SetTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            timer.Tick += Invalidate;
+            timer.Start();
         }
 
-        public System.Timers.Timer timer;
+        readonly System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
 
         private void Form_Closed(object sender, EventArgs e)
         {
