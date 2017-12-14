@@ -236,7 +236,7 @@ namespace MKM_Labs.ViewModels
             var result = dlg.ShowDialog();
             if (!result.HasValue || !result.Value) return;
             var filename = dlg.FileName;
-            var content = HasAnalytical ? "k,t,x(t),y(t),Vx(t),Vy(t)\n" : "k,t,x(t),y(t),Vx(t),Vy(t),ax(t),ay(t),aVx(t),aVy(t)\n";
+            var content = HasAnalytical ? "k,t,x(t),y(t),PhsaePortrait(t),Vy(t)\n" : "k,t,x(t),y(t),PhsaePortrait(t),Vy(t),ax(t),ay(t),aVx(t),aVy(t)\n";
             for (int i = 0; i < Yt.Count; i++)
             {
                 content += i + "," + Xt[i].X + "," + Yt[i].Y + "," + Vxt[i].Y + "," + Vyt[i].Y;
