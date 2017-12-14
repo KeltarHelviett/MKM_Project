@@ -25,7 +25,7 @@ namespace MKM_Labs.Views.PendulumModeling
 
         private void CalculateBtnClick(object sender, RoutedEventArgs e)
         {
-
+            (DataContext as PendulumModelingViewModel)?.Calculate();
         }
     }
 }

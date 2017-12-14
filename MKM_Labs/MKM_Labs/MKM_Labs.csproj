@@ -69,9 +69,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\PendulumModeling\PendulumModelingResultViewModel.cs" />
     <Compile Include="ViewModels\PendulumModeling\PendulumModelingViewModel.cs" />
+    <Compile Include="ViewModels\ProbabilityTheory\ProbabilityTheoryViewModel.cs" />
+    <Compile Include="Views\PendulumModeling\PendulumModelingResultView.xaml.cs">
+      <DependentUpon>PendulumModelingResultView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PendulumModeling\PendulumModelingView.xaml.cs">
       <DependentUpon>PendulumModelingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProbabilityTheory\ProbabilityTheoryView.xaml.cs">
+      <DependentUpon>ProbabilityTheoryView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\FallModeling\FallModelingResultView.xaml">
       <SubType>Designer</SubType>
@@ -150,7 +158,15 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\PendulumModeling\PendulumModelingResultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PendulumModeling\PendulumModelingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProbabilityTheory\ProbabilityTheoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
