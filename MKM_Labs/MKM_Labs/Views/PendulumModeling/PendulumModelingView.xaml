@@ -1,0 +1,74 @@
+﻿<Window x:Class="MKM_Labs.Views.PendulumModeling.PendulumModelingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MKM_Labs.Views.PendulumModeling"
+        mc:Ignorable="d"
+        Title="PendulumModelingView" Height="375.721" Width="527.163">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="79*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="PendulumModelingLabel" Content="Моделирование движения маятника" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.ColumnSpan="2" Margin="7,0,16,0" Grid.Column="1"/>
+        <Label x:Name="EquationTypeLabel" Content="Тип уравнения" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" 
+               Grid.Column="1" Grid.ColumnSpan="2" Margin="69,0,76,0"/>
+        <RadioButton x:Name="SmallAngleEquationRb" Content="Для малых углов" HorizontalAlignment="Center" VerticalAlignment="Center"
+                     Grid.Row="2" Grid.Column="0" IsChecked="{Binding IsSmallAngleEquation, Mode=TwoWay}" Margin="1,0"/>
+        <RadioButton x:Name="AnyAngleEquationRb" Content="Для любых углов" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Grid.Row="2" Grid.Column="2" IsChecked="{Binding IsAnyAngleEquation, Mode=TwoWay}" Margin="1,0"/>
+        <Label x:Name="ModelParametersLabel" Content="Параметры Модели" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="55,0,62,0"/>
+        <Label x:Name="BarLengthLabel" Content="Длина стержня L" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="4" Grid.Column="0"/>
+        <TextBox x:Name="BarLengthTB" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding BarLength, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="4" Grid.Column="1" Margin="1,4"/>
+        <Label x:Name="InitialAngleLabel" Content="Нач. угол θ₀" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="4" Grid.Column="2"/>
+        <TextBox x:Name="InitialAngleTB" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding InitialAngle, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="4" Grid.Column="3"/>
+        <Label x:Name="InitialSpeedLabel" Content="Нач. скорость v₀" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="5" Grid.Column="0"/>
+        <TextBox x:Name="InitialSpeedTB" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding InitialSpeed, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="5" Grid.Column="1"/>
+        <Label x:Name="PendulumParametersLabel" Content="Параметры маятника" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"/>
+        <Label x:Name="MassLabel" Content="Масса m" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="7" Grid.Column="0"/>
+        <TextBox x:Name="MassTB" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Mass, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="7" Grid.Column="1"/>
+        <Label x:Name="EnvironmentParametersLabel" Content="Параметры среды" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4"/>
+        <Label x:Name="ConstantComponentLabel" Content="Постоянная компонента U" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="9" Grid.Column="0"/>
+        <TextBox x:Name="ConstantUTB" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding ConstU, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="9" Grid.Column="1"/>
+        <Label x:Name="InitialEnvSpeedLabel" Content="Нач. скорость ср. U₀" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="9" Grid.Column="2"/>
+        <TextBox x:Name="InitialEnvSpeedTB" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding InitialEnvSpeed, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="9" Grid.Column="3"/>
+        <Label x:Name="HarmonicFrequencyLabel" Content="Частота Ω₀" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="10" Grid.Column="0"/>
+        <TextBox x:Name="HarmonicFrequencyTB" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding HarmonicFrequency, Mode=TwoWay}" 
+                 VerticalAlignment="Center" Width="120" Grid.Row="10" Grid.Column="1"/>
+        <Button x:Name="CalculateBtn" Content="Рассчитать" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"/>
+    </Grid>
+</Window>
