@@ -190,7 +190,7 @@ namespace MKM_Labs.ViewModels.HarmonicOscillatorModeling
                 return (Mass*v*v + Rigidity*x*x)/2;
             };
 
-            Func<double, double> Vsr = delegate (double lt) { return 0; };
+            Func<double, double, double> Vsr = delegate (double lt, double alfa) { return 0; };
 
             var Res = MKM_Labs.MathUtils.EulerCromer(0, EndTime, steporn, IsStep, 0, 50, Fa, Fe, Vsr);
             (new MKM_Labs.Views.HarmonicOscillatorModeling.HarmonicOscillatorModelingResultView(Res)).Show();

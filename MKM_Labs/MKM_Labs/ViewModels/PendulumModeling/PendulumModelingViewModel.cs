@@ -202,10 +202,6 @@ namespace MKM_Labs.ViewModels.PendulumModeling
 
         public void Calculate()
         {
-            var step = 0.005;
-            var IsStep = true;
-            var N = 10;
-
             var steporn = step;
             if (!IsStep) steporn = N;
             double g = 9.81;
@@ -221,12 +217,12 @@ namespace MKM_Labs.ViewModels.PendulumModeling
                 return Mass * g * barLength*( 1 - Math.Cos(alfa) ) + Mass * BarLength * BarLength / 2 * w*w;
             };
 
-            Func<double, double> Vsr = delegate (double t)
+            Func<double, double, double> Vsr = delegate (double t, double alfa)
             {
-                return ConstU + initialEnvSpeed*Math.Cos(HarmonicFrequency* t);
+                return (ConstU + initialEnvSpeed*Math.Cos(HarmonicFrequency* t)) * Math.Cos(alfa) / barLength;
             };
 
-            var Res = MKM_Labs.MathUtils.EulerCromer(0, 10, steporn, IsStep, InitialAngle, InitialSpeed, Fa, Fe, Vsr);
+            var Res = MKM_Labs.MathUtils.EulerCromer(0, EndTime, steporn, IsStep, InitialAngle, InitialSpeed, Fa, Fe, Vsr);
             (new MKM_Labs.Views.PendulumModeling.PendulumModelingResultView(Res)).Show();
         }
 
