@@ -221,7 +221,12 @@ namespace MKM_Labs.ViewModels.PendulumModeling
                 return Mass * g * barLength*( 1 - Math.Cos(alfa) ) + Mass * BarLength * BarLength / 2 * w*w;
             };
 
-            var Res = MKM_Labs.MathUtils.EulerCromer(0, 10, steporn, IsStep, InitialAngle, InitialSpeed, Fa, Fe);
+            Func<double, double> Vsr = delegate (double t)
+            {
+                return ConstU + initialEnvSpeed*Math.Cos(HarmonicFrequency* t);
+            };
+
+            var Res = MKM_Labs.MathUtils.EulerCromer(0, 10, steporn, IsStep, InitialAngle, InitialSpeed, Fa, Fe, Vsr);
             (new MKM_Labs.Views.PendulumModeling.PendulumModelingResultView(Res)).Show();
         }
 
