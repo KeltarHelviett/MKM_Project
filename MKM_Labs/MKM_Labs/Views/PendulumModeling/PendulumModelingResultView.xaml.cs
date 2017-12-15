@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MKM_Labs.ViewModels.PendulumModeling;
 
 namespace MKM_Labs.Views.PendulumModeling
 {
@@ -22,6 +23,17 @@ namespace MKM_Labs.Views.PendulumModeling
         public PendulumModelingResultView()
         {
             InitializeComponent();
+        }
+
+        public PendulumModelingResultView(Tuple<List<double>, List<double>, List<double>, List<double>> numeric,
+            Tuple<List<double>, List<double>, List<double>, List<double>> analytical) : this()
+        {
+            DataContext = new PendulumModelingResultView(numeric, analytical);
+        }
+
+        public PendulumModelingResultView(Tuple<List<double>, List<double>, List<double>, List<double>> numeric) : this()
+        {
+            DataContext = new PendulumModelingResultViewModel(numeric);
         }
     }
 }

@@ -132,7 +132,46 @@ namespace MKM_Labs.ViewModels.PendulumModeling
 
         public void Calculate()
         {
-            throw new NotImplementedException();
+            var step = 0.005;
+            var IsStep = true;
+            var N = 10;
+
+            var steporn = step;
+            if (!IsStep) steporn = N;
+            double g = 9.81;
+
+            Func<double, double, double, double> Fa = delegate (double alfa, double w, double dt)
+            {
+                if (IsAnyAngleEquation) { return -g / barLength * Math.Sin(alfa); }
+                else { return -g / barLength * alfa; }
+            };
+
+            Func<double, double, double> Fe = delegate (double alfa, double w)
+            {
+                return Mass * g * barLength*( 1 - Math.Cos(alfa) ) + Mass * BarLength * BarLength / 2 * w*w;
+            };
+
+            var Res = MKM_Labs.MathUtils.EulerCromer(0, 10, steporn, IsStep, InitialAngle, InitialSpeed, Fa, Fe);
+            (new MKM_Labs.Views.PendulumModeling.PendulumModelingResultView(Res)).Show();
         }
+
+        //public void Animate()
+        //{
+        //    var A = 4.0;
+        //    var omega = 1.0;
+        //    var t = 0.0;
+
+        //    Func<double, double, double, double> Fa = delegate (double x, double v, double dt)
+        //    {
+        //        double omega_2 = Rigidity / Mass;
+        //        double gamma = Friction;
+        //        t += dt;
+
+        //        return -omega_2 * x - gamma * v + A * Math.Cos(omega * t);
+        //    };
+
+        //    (new MKM_Labs.Views.HarmonicOscillatorModeling.HarmonicOscillatorModelingAnimationView(0, 50, Fa)).Show();
+        //}
+
     }
 }
