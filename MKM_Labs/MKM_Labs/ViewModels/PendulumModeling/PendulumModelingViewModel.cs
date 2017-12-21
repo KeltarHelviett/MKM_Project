@@ -206,10 +206,12 @@ namespace MKM_Labs.ViewModels.PendulumModeling
             if (!IsStep) steporn = N;
             double g = 9.81;
 
+            double k = 0.4;
+
             Func<double, double, double, double> Fa = delegate (double alfa, double w, double dt)
             {
-                if (IsAnyAngleEquation) { return -g / barLength * Math.Sin(alfa); }
-                else { return -g / barLength * alfa; }
+                if (IsAnyAngleEquation) { return -g / barLength * Math.Sin(alfa) - k / Mass * w * barLength; }
+                else { return -g / barLength * alfa - k / Mass * w * barLength; }
             };
 
             Func<double, double, double> Fe = delegate (double alfa, double w)
