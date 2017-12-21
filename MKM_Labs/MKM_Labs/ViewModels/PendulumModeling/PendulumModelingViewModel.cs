@@ -191,6 +191,18 @@ namespace MKM_Labs.ViewModels.PendulumModeling
             }
         }
 
+        private double k = 0;
+
+        public double K
+        {
+            get { return k; }
+            set
+            {
+                k = value;
+                OnPropertyChanged(nameof(K));
+            }
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -204,9 +216,7 @@ namespace MKM_Labs.ViewModels.PendulumModeling
         {
             var steporn = step;
             if (!IsStep) steporn = N;
-            double g = 9.81;
-
-            double k = 0.4;
+            var g = 9.81;
 
             Func<double, double, double, double> Fa = delegate (double alfa, double w, double dt)
             {
@@ -214,18 +224,14 @@ namespace MKM_Labs.ViewModels.PendulumModeling
                 else { return -g / barLength * alfa - k / Mass * w * barLength; }
             };
 
-            Func<double, double, double> Fe = delegate (double alfa, double w)
-            {
-                return Mass * g * barLength*( 1 - Math.Cos(alfa) ) + Mass * BarLength * BarLength / 2 * w*w;
-            };
+            Func<double, double, double> Fe = (alfa, w) => Mass * g * barLength * (1 - Math.Cos(alfa)) +
+                                                           Mass * BarLength * BarLength / 2 * w * w;
 
-            Func<double, double, double> Vsr = delegate (double t, double alfa)
-            {
-                return (ConstU + initialEnvSpeed*Math.Cos(HarmonicFrequency* t)) * Math.Cos(alfa) / barLength;
-            };
+            Func<double, double, double> Vsr =
+                (t, alfa) => (ConstU + initialEnvSpeed * Math.Cos(HarmonicFrequency * t)) * Math.Cos(alfa) / barLength;
 
-            var Res = MKM_Labs.MathUtils.EulerCromer(0, EndTime, steporn, IsStep, InitialAngle, InitialSpeed, Fa, Fe, Vsr);
-            (new MKM_Labs.Views.PendulumModeling.PendulumModelingResultView(Res)).Show();
+            var res = MKM_Labs.MathUtils.EulerCromer(0, EndTime, steporn, IsStep, InitialAngle, InitialSpeed, Fa, Fe, Vsr);
+            (new MKM_Labs.Views.PendulumModeling.PendulumModelingResultView(res)).Show();
         }
 
         //public void Animate()

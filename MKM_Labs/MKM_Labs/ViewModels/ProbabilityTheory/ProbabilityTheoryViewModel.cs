@@ -110,27 +110,44 @@ namespace MKM_Labs.ViewModels.ProbabilityTheory
 
         #endregion
 
+        private long cnk(int k, int n)
+        {
+            long kfac = 0, nkfac = 0, nfac = 0;
+            long fac = 1;
+            for (long i = 1; i <= n; ++i)
+            {
+                fac *= i;
+                if (i == k)
+                    kfac = fac;
+                if (i == n)
+                    nfac = fac;
+                if (i == n - k)
+                    nkfac = fac;
+            }
+            return nfac / (kfac * nkfac);
+        }
+
         public void CalculateClassicTask()
         {
             var rnd = new Random();
-            cea = 0;
+            var ans = 0;
             for (var i = 0; i < CEC; ++i)
             {
-                var remaining = N;
                 var boxes = Enumerable.Repeat(0, N).ToList();
-                while (remaining != 0)
+               
+                for (var j = 0; j < N; ++j)
                 {
-                    for (var j = 0; j < N; ++j)
-                    {
-                        var rndNumber = rnd.Next(0, remaining + 1);
-                        remaining -= rndNumber;
-                        boxes[j] = rndNumber;
-                    }
+                    var rndNumber = rnd.Next(0, N);
+                    boxes[rndNumber] += 1;
                 }
                 if (boxes.Count(s => s == 0) == 1)
-                    cea++;
+                    ans++;
             }
-            CEA = cea / CEC;
+            CEA = ((double)ans) / CEC;
+            CA = ((double)(n * (n - 1))) / cnk(n - 1, 2 * n - 1);
+            //CA = (n * cnk(n - 2, n + n - 1 - 1)) / cnk(n - 1, 2 * n - 1);
+            //CA = n * Math.Pow(n - 1, n) / Math.Pow(n, n);
+
         }
 
         public void CalculateGeometryTask()

@@ -86,6 +86,10 @@
                Grid.Row="12" Grid.Column="0" Margin="17,0"/>
         <TextBox x:Name="EndTimeTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap"
                  Text="{Binding EndTime, Mode=TwoWay}" VerticalAlignment="Center" Width="120" Grid.Row="12" Grid.Column="1" Margin="2,1"/>
+        <Label x:Name="KLabel" Content="Коэф. вязкости" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Grid.Row="12" Grid.Column="2" Margin="17,0"/>
+        <TextBox x:Name="KTextBox" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap"
+                 Text="{Binding K, Mode=TwoWay}" VerticalAlignment="Center" Width="120" Grid.Row="12" Grid.Column="3" Margin="2,1"/>
         <Button x:Name="CalculateBtn" Content="Рассчитать" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75"
                 Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Click="CalculateBtnClick" Margin="66,0,102,0"/>
     </Grid>
