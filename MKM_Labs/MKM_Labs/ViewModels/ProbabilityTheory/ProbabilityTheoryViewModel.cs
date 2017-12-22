@@ -144,7 +144,17 @@ namespace MKM_Labs.ViewModels.ProbabilityTheory
                     ans++;
             }
             CEA = ((double)ans) / CEC;
-            CA = ((double)(n * (n - 1))) / cnk(n - 1, 2 * n - 1);
+            double ans1 = n * n * (n - 1) * (n - 1) / 2.0;
+            for (var i = n - 2; i >= 1; i--)
+            {
+                ans1 *= i;
+            }
+
+            for (var i = 1; i <= n; i++)
+            {
+                ans1 /= n;
+            }
+            CA = ans1;
             //CA = (n * cnk(n - 2, n + n - 1 - 1)) / cnk(n - 1, 2 * n - 1);
             //CA = n * Math.Pow(n - 1, n) / Math.Pow(n, n);
 
